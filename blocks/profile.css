@@ -34,6 +34,7 @@
   overflow: hidden;
   grid-area: title;
 }
+
 .profile__edit-button {
   background: transparent url(../images/edit-icon.svg) center no-repeat;
   height: 24px;
@@ -78,13 +79,6 @@
   cursor: pointer;
 }
 
-.profile__title {
-  font-size: 42px;
-  line-height: 48px;
-  font-weight: 500;
-  grid-area: title;
-  margin: 0 auto;
-}
 .profile__image {
   border-radius: 50%;
   overflow: hidden;

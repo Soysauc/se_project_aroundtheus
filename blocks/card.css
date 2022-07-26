@@ -4,7 +4,7 @@
   flex-direction: column;
   border-radius: 10px;
   background: white;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   overflow: hidden;
 }
 .card__list {
