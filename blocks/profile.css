@@ -9,7 +9,7 @@
   grid-template-areas:
     "title button"
     "description description";
-  grid-template-columns: minmax(auto 373px) auto;
+  grid-template-columns: minmax(auto 373px);
   /* grid-gap: 9px 17px; */
 }
 @media screen and (max-width: 580px) {
