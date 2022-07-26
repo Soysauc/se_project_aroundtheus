@@ -1,4 +1,4 @@
-.card {
+.card__item {
   display: flex;
   list-style: none;
   flex-direction: column;
@@ -65,14 +65,14 @@
   height: 18px;
 }
 @media screen and (max-width: 580px) {
-  .cards__list {
+  .card__list {
     grid-template-columns: repeat(auto-fit, 282px);
     max-width: 282px;
     justify-content: center;
   }
 }
 @media screen and (max-width: 880px) {
-  .cards__list {
+  .card__list {
     display: grid;
     padding: 0;
     justify-content: center;
