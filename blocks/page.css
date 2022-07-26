@@ -1,0 +1,38 @@
+.page {
+  background-color: black;
+  color: white;
+  font-family: "Inter", Arial, sans-serif;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+}
+.page__content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.page__section {
+  max-width: 888px;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 580px) {
+  .page {
+    /* max-width: 320px; */
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .page {
+    max-width: 768px;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  .page__section {
+    width: calc(100% - 40px);
+  }
+}

@@ -1,0 +1,35 @@
+.header {
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  padding: 45px 0;
+  margin-bottom: 20px;
+}
+.header__image {
+  width: 173px;
+  height: 33px;
+}
+
+.header__image::before {
+  content: "";
+  width: 100%;
+  height: 1px;
+  opacity: 0.7;
+  background: #545454;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    min-height: 85px;
+  }
+  .header::before {
+    width: calc(100% + 40px);
+  }
+  .header__around-image {
+    width: 126px;
+    height: 24px;
+    margin: 0 0 0 7px;
+  }
+}
