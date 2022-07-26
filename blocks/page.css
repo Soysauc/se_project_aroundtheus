@@ -18,21 +18,3 @@
   position: relative;
   margin: 0 auto;
 }
-
-@media screen and (max-width: 580px) {
-  .page {
-    /* max-width: 320px; */
-  }
-}
-
-@media screen and (max-width: 880px) {
-  .page {
-    max-width: 768px;
-  }
-}
-
-@media screen and (max-width: 1140px) {
-  .page__section {
-    width: calc(100% - 40px);
-  }
-}

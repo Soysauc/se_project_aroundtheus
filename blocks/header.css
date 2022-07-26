@@ -27,9 +27,10 @@
   .header::before {
     width: calc(100% + 40px);
   }
-  .header__around-image {
+  .header__image {
     width: 126px;
     height: 24px;
     margin: 0 0 0 7px;
+    padding-left: 27px;
   }
 }

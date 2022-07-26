@@ -2,11 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      content="width=device-width, user-scalable=no, initial scale=1.0,
-    maximum-scale"
-      name="viewport"
-    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <meta content="ie=edge" http-equiv="X-UA-Compatible" />
     <title>Around the U.S</title>
     <link href="./pages/index.css" rel="stylesheet" />
@@ -28,8 +26,11 @@
             class="profile__image"
           />
           <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
-            <button class="profile__edit-button"></button>
+            <!-- make profile__info-container a flex box  -->
+            <div class="profile__info-container">
+              <h1 class="profile__title">Jacques Cousteau</h1>
+              <button class="profile__edit-button"></button>
+            </div>
             <p class="profile__description">Explorer</p>
           </div>
           <button class="profile__add-button"></button>
@@ -38,24 +39,48 @@
           <ul class="card__list">
             <li class="card">
               <img src="./images/yosemite-valley.png" class="card__image" />
+              <div class="card__content-container">
+                <h2 class="card__text">Yosemite Valley</h2>
+                <button type="button" class="card__button"></button>
+              </div>
             </li>
             <li class="card">
               <img src="./images/lake-louise.png" class="card__image" />
+              <div class="card__content-container">
+                <h2 class="card__text">Lake Louise</h2>
+                <button type="button" class="card__button"></button>
+              </div>
             </li>
             <li class="card">
               <img src="./images/bald-mountains.png" class="card__image" />
+              <div class="card__content-container">
+                <h2 class="card__text">Bald Mountains</h2>
+                <button type="button" class="card__button"></button>
+              </div>
             </li>
             <li class="card">
               <img src="./images/latemar.png" class="card__image" />
+              <div class="card__content-container">
+                <h2 class="card__text">Latemar</h2>
+                <button type="button" class="card__button"></button>
+              </div>
             </li>
             <li class="card">
               <img
                 src="./images/vanoise-national-park.png"
                 class="card__image"
               />
+              <div class="card__content-container">
+                <h2 class="card__text">Vanoise National Park</h2>
+                <button type="button" class="card__button"></button>
+              </div>
             </li>
             <li class="card">
               <img src="./images/lago-di-braies.png" class="card__image" />
+              <div class="card__content-container">
+                <h2 class="card__text">Lago Di Braies</h2>
+                <button type="button" class="card__button"></button>
+              </div>
             </li>
           </ul>
         </section>
