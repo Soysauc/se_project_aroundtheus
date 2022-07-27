@@ -24,9 +24,9 @@
   .header {
     min-height: 85px;
   }
-  .header::before {
+  /* .header::before {
     width: calc(100% + 40px);
-  }
+  } */
   .header__image {
     width: 126px;
     height: 24px;

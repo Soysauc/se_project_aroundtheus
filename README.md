@@ -4,6 +4,8 @@
 
 https://github.com/Soysauc/se_project_coffeeshop.git
 
+####Link to live site on GitHub:
+https://soysauc.github.io/se_project_aroundtheus/
 **Technologies**
 
 This project was made using Display: Grid and also honed in on the use of Flexbox properties. What was also explored was the use of media queries in order to produce an attractive, responsive design. When you load up the project on different screen resolutions you are met with an adaptive layout that molds to that very screen.
