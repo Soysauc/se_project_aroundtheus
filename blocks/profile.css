@@ -36,7 +36,7 @@
   height: 24px;
   width: 24px;
   grid-area: button;
-  border: solid white;
+  border: 1px solid white;
   align-self: center;
   padding: 0;
   margin: 0;
@@ -54,7 +54,7 @@
   width: 150px;
   height: 50px;
   grid-area: button;
-  border: solid white;
+  border: 1px solid white;
 
   box-sizing: border-box;
   border-radius: 2px;
