@@ -3,6 +3,7 @@
   align-items: center;
   padding-top: 40px;
   justify-content: space-around;
+  margin-bottom: 30px;
 }
 .profile__info {
   display: grid;
