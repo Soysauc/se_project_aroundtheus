@@ -64,17 +64,18 @@
   width: 21px;
   height: 18px;
 }
-@media screen and (max-width: 580px) {
-  .card__list {
-    grid-template-columns: repeat(auto-fit, 282px);
-    max-width: 282px;
-    justify-content: center;
-  }
-}
 @media screen and (max-width: 880px) {
   .card__list {
     display: grid;
     padding: 0;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .card__list {
+    /* grid-template-columns: repeat(auto-fit, 282px); */
+    max-width: 282px;
     justify-content: center;
   }
 }

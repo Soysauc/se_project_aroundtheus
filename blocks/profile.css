@@ -9,14 +9,10 @@
   grid-template-areas:
     "title button"
     "description description";
-  grid-template-columns: minmax(auto 373px);
+  grid-template-columns: minmax(auto, 373px);
   /* grid-gap: 9px 17px; */
 }
-@media screen and (max-width: 580px) {
-  .profile__info {
-    flex-direction: column;
-  }
-}
+
 .profile__title {
   color: white;
   /* width: 373px; */
@@ -121,5 +117,10 @@
   }
   .profile__image {
     margin: 0 auto;
+  }
+}
+@media screen and (max-width: 580px) {
+  .profile__info {
+    flex-direction: column;
   }
 }
