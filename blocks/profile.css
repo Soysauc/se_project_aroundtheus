@@ -2,30 +2,33 @@
   display: flex;
   align-items: center;
   padding-top: 40px;
-  justify-content: space-around;
-  margin-bottom: 30px;
+  /* justify-content: space-around; */
+  gap: 30px;
+  margin-bottom: 51px;
 }
 .profile__info {
-  display: grid;
+  /* display: grid;
   grid-template-areas:
     "title button"
-    "description description";
-  grid-template-columns: minmax(auto, 373px);
+    "description description"; */
+  /* gap: 16px; */
+  /* grid-template-columns: minmax(auto, 373px); */
   /* grid-gap: 9px 17px; */
 }
 
 .profile__title {
   color: white;
-  /* width: 373px; */
+  /* min-width: 373px; */
+  /* width: 100%; */
   font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
   box-sizing: border-box;
-  margin-top: 16px;
+  margin: 0;
   /* align-self: center; */
-  margin-bottom: 0;
+  /* margin-bottom: 0; */
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -38,7 +41,7 @@
   width: 24px;
   grid-area: button;
   border: 1px solid white;
-  align-self: center;
+  /* align-self: baseline; */
   padding: 0;
   margin: 0;
   transition: 0.3s;
@@ -53,6 +56,7 @@
 .profile__add-button {
   background: transparent url(../images/add-icon.svg) center no-repeat;
   width: 150px;
+  min-width: 50px;
   height: 50px;
   grid-area: button;
   border: 2px solid white;
@@ -64,12 +68,15 @@
   align-items: center;
   background-size: 22px;
   transition: 0.3s;
-  align-self: stretch;
+  /* align-self: stretch; */
   margin-left: auto;
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 .profile__info-container {
   display: flex;
+  align-items: baseline;
+  margin-bottom: 16px;
+  max-width: 392px;
 }
 .profile__add-button:hover {
   opacity: 0.6;
@@ -79,11 +86,11 @@
 .profile__image {
   border-radius: 50%;
   overflow: hidden;
-  width: 120px;
+  min-width: 120px;
   height: 120px;
   object-fit: cover;
   background-position: center;
-  margin: 0 29px 0 0;
+  /* margin: 0 29px 0 0; */
 }
 
 .profile__description {
@@ -95,7 +102,7 @@
   white-space: nowrap;
   overflow: hidden;
 }
-@media screen and (max-width: 795px) {
+/* @media screen and (max-width: 768px) {
   .profile {
     padding: 43px 0 21px;
     flex-direction: column;
@@ -123,5 +130,12 @@
 @media screen and (max-width: 580px) {
   .profile__info {
     flex-direction: column;
+  }
+} */
+
+@media screen and (max-width: 768px) {
+  .profile__title {
+    font-size: 32px;
+    line-height: 1.2;
   }
 }
