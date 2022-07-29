@@ -28,6 +28,11 @@
   }
 }
 @media screen and (max-width: 480px) {
+  .header {
+    padding-bottom: 32px;
+    margin-bottom: 0;
+    /* margin-bottom: 32px; */
+  }
   .header__image {
     width: 126px;
     height: 24px;

@@ -148,7 +148,24 @@
 }
 
 @media screen and (max-width: 320px) {
+  .profile {
+    padding-top: 38px;
+    margin-bottom: 36px;
+  }
   .profile__add-button {
     width: 100%;
+  }
+  .profile__edit-button {
+    height: 18px;
+    width: 18px;
+  }
+  .profile__title {
+    font-size: 22px;
+    line-height: 26.63px;
+    margin-bottom: 14px;
+  }
+  .profile__description {
+    font-size: 18px;
+    line-height: 16.94px;
   }
 }
