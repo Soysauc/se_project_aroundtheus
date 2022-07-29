@@ -1,16 +1,17 @@
 .profile {
   display: flex;
   align-items: center;
-  padding-top: 40px;
+  padding: 40px 19px 0 19px;
   /* justify-content: space-around; */
   gap: 30px;
   margin-bottom: 51px;
 }
 .profile__info {
-  /* display: grid;
+  display: grid;
   grid-template-areas:
     "title button"
-    "description description"; */
+    "description description";
+  align-items: baseline;
   /* gap: 16px; */
   /* grid-template-columns: minmax(auto, 373px); */
   /* grid-gap: 9px 17px; */
@@ -126,16 +127,28 @@
   .profile__image {
     margin: 0 auto;
   }
-}
-@media screen and (max-width: 580px) {
-  .profile__info {
-    flex-direction: column;
-  }
-} */
+}*/
 
 @media screen and (max-width: 768px) {
   .profile__title {
     font-size: 32px;
     line-height: 1.2;
+  }
+}
+@media screen and (max-width: 550px) {
+  .profile {
+    flex-direction: column;
+  }
+  .profile__description {
+    text-align: center;
+  }
+  .profile__add-button {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile__add-button {
+    width: 100%;
   }
 }

@@ -13,8 +13,9 @@
   min-height: 100vh;
 }
 .page__section {
-  max-width: 888px;
+  max-width: 918px;
   width: 100%;
   position: relative;
   margin: 0 auto;
+  box-sizing: border-box;
 }
