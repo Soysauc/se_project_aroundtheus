@@ -5,10 +5,13 @@
   left: 0;
   bottom: 0;
   right: 0;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
+}
+.popup_is-opened {
+  display: flex;
 }
 .popup__content {
   position: relative;
@@ -34,6 +37,11 @@
   border: none;
   border-radius: 0px;
 }
+.popup__close:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
 .popup__title {
   font-family: "Inter", Arial, sans-serif;
   font-style: normal;
@@ -79,6 +87,11 @@
   color: #fff;
   padding: 16px 0;
   margin-top: 48px;
+}
+
+.popup__button:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
