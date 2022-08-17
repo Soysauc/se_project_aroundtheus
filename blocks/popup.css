@@ -1,6 +1,6 @@
 .popup {
   position: fixed;
-  padding: 0 30px;
+  padding: 0 19px;
   top: 0;
   left: 0;
   bottom: 0;
@@ -35,40 +35,50 @@
   border-radius: 0px;
 }
 .popup__title {
-  font-family: "Inter";
+  font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;
   color: black;
+  margin-top: 0;
+  padding-bottom: 24px;
+  /* margin-bottom: 54px; */
 }
-.popup__form {
-}
+/* .popup__form {
+} */
 .popup__input {
   display: block;
-  font-family: "Inter";
+  font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   appearance: none;
   border: none;
+  padding-bottom: 13px;
   border-bottom: 1px solid black;
   width: 100%;
+  margin-top: 30px;
 }
-.popup__input_type_name {
+/* .popup__input_type_name {
 }
 .popup_input_type_description {
-}
+} */
 .popup__button {
   display: block;
   width: 100%;
-  font-family: "Inter";
+  font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 1;
   text-align: center;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  padding: 16px 0;
+  margin-top: 48px;
 }
 
 @media screen and (max-width: 600px) {
@@ -81,8 +91,12 @@
 @media screen and (max-width: 320px) {
   .popup__button {
     font-size: 14px;
+    margin-top: 45px;
   }
   .popup__title {
     font-size: 18px;
+  }
+  .popup__content {
+    padding: 25px 22px;
   }
 }
