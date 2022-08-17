@@ -1,0 +1,88 @@
+.popup {
+  position: fixed;
+  padding: 0 30px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+.popup__content {
+  position: relative;
+  padding: 34px 36px;
+  background: #fff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  width: 430px;
+  box-sizing: border-box;
+}
+.popup__close {
+  position: absolute;
+  top: -43px;
+  right: -43px;
+  width: 40px;
+  height: 40px;
+  background-image: url(../images/Close-Icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: transparent;
+  appearance: none;
+  border: none;
+  border-radius: 0px;
+}
+.popup__title {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: black;
+}
+.popup__form {
+}
+.popup__input {
+  display: block;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  appearance: none;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+.popup__input_type_name {
+}
+.popup_input_type_description {
+}
+.popup__button {
+  display: block;
+  width: 100%;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .popup__close {
+    right: 0;
+    width: 26px;
+    height: 26px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .popup__button {
+    font-size: 14px;
+  }
+  .popup__title {
+    font-size: 18px;
+  }
+}
