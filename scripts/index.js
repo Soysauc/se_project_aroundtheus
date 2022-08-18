@@ -11,6 +11,9 @@ const profileDescriptionEl = document.querySelector(".profile__description");
 const profileTitleInput = profileEditForm.querySelector(
   ".popup__input_type_name"
 );
+
+const cardListEl = document.querySelector(".card__list");
+console.log(cardListEl);
 const profileDescriptionInput = profileEditForm.querySelector(
   ".popup__input_type_description"
 );
@@ -68,6 +71,10 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg ",
   },
 ];
+console.log(document.querySelector("#card-template").content);
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".card__item");
 initialCards.forEach(function (cardData) {
   // clone template
   const cardEl = cardTemplate.cloneNode(true);
@@ -84,10 +91,8 @@ initialCards.forEach(function (cardData) {
   // append to list
   cardListEl.appendChild(cardEl);
 });
-// const cardTemplate = document
-//   .querySelector("#card-template")
-//   .content.querySelector(".card__item");
-// const cardsList = document.querySelector(".card__list");
+
+const cardsList = document.querySelector(".card__list");
 
 // function generateCard(card) {
 //   const cardElement = cardTemplate.cloneNode(true);
