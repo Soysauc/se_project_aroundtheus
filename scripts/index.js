@@ -139,7 +139,7 @@ initialCards.forEach(function (card) {
   renderCard(newCard, cardList);
 });
 
-// method for adding the child in the list beggining is .prepend
+// method for adding the child in the list beggining is .prepend from Sergey
 /*cardsarray.forEach(item => {
   const template = document.query...('.template');
   const clone = template.clone();
