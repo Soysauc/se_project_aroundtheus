@@ -71,7 +71,7 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg ",
   },
 ];
-console.log(document.querySelector("#card-template").content);
+
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card__item");
@@ -115,34 +115,34 @@ const cardsList = document.querySelector(".card__list");
 // templates
 //---------------------------------------------------------
 
-editForm.addEventListener("submit", formSubmitHandler);
-profileEditButton.addEventListener("click", () =>
-  toggleModalWindow(editModalWindow)
-);
-profileAddButton.addEventListener("click", () =>
-  toggleModalWindow(addModalWindow)
-);
-editModalCloseButton.addEventListener("click", () =>
-  toggleModalWindow(editModalWindow)
-);
-addModalCloseButton.addEventListener("click", () =>
-  toggleModalWindow(addModalWindow)
-);
-ImgCloseupModalCloseButton.addEventListener("click", () =>
-  toggleModalWindow(preViewImgModalWindow)
-);
+// editForm.addEventListener("submit", formSubmitHandler);
+// profileEditButton.addEventListener("click", () =>
+//   toggleModalWindow(editModalWindow)
+// );
+// profileAddButton.addEventListener("click", () =>
+//   toggleModalWindow(addModalWindow)
+// );
+// editModalCloseButton.addEventListener("click", () =>
+//   toggleModalWindow(editModalWindow)
+// );
+// addModalCloseButton.addEventListener("click", () =>
+//   toggleModalWindow(addModalWindow)
+// );
+// ImgCloseupModalCloseButton.addEventListener("click", () =>
+//   toggleModalWindow(preViewImgModalWindow)
+//);
 function renderCard(card, container) {
   container.append(card);
 }
-initialCards.forEach(function (card) {
-  const newCard = generateCard(card);
-  renderCard(newCard, cardList);
-});
+// initialCards.forEach(function (card) {
+//   const newCard = generateCard(card);
+//   renderCard(newCard, cardList);
+// });
 
-initialCards.forEach(function (card) {
-  const newCard = generateCard(card);
-  renderCard(newCard, cardList);
-});
+// initialCards.forEach(function (card) {
+//   const newCard = generateCard(card);
+//   renderCard(newCard, cardList);
+// });
 
 // method for adding the child in the list beggining is .prepend from Sergey
 /*cardsarray.forEach(item => {
