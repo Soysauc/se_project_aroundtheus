@@ -51,10 +51,8 @@
   color: black;
   margin-top: 0;
   padding-bottom: 24px;
-  /* margin-bottom: 54px; */
 }
-/* .popup__form {
-} */
+
 .popup__input {
   display: block;
   font-family: "Inter", Arial, sans-serif;
@@ -69,10 +67,7 @@
   width: 100%;
   margin-top: 30px;
 }
-/* .popup__input_type_name {
-}
-.popup_input_type_description {
-} */
+
 .popup__button {
   display: block;
   width: 100%;
@@ -94,11 +89,40 @@
   cursor: pointer;
 }
 
+/* Sprint 5 */
+.popup__image {
+  max-width: 75vw;
+  max-height: 75vh;
+  width: 100%;
+}
+
+.popup__image-title {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  font-style: normal;
+  color: #ffffff;
+}
+
+.popup__content-image-preview {
+  background-color: transparent;
+  width: 75vw;
+  height: 75vh;
+  position: relative;
+}
+
+.popup__close_preview {
+  position: absolute;
+}
+
 @media screen and (max-width: 600px) {
   .popup__close {
     right: 0;
     width: 26px;
     height: 26px;
+  }
+  .popup__content-image-preview {
+    padding: 0;
   }
 }
 @media screen and (max-width: 320px) {

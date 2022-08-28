@@ -1,11 +1,11 @@
-.card__item {
+.card {
   display: flex;
   list-style: none;
   flex-direction: column;
   border-radius: 10px;
   background: white;
-  /* border-radius: 10px; */
   overflow: hidden;
+  position: relative;
 }
 .card__list {
   display: grid;
@@ -49,13 +49,6 @@
   margin: 0;
 }
 
-/* .card__description {
-  display: flex;
-  background-color: white;
-  color: black;
-  padding: 25px 20px;
-  align-items: center;
-} */
 .card__button {
   background-color: transparent;
   border: none;
@@ -68,18 +61,29 @@
   cursor: pointer;
   opacity: 0.5;
 }
-/* @media screen and (max-width: 880px) {
-  .card__list {
-    display: grid;
-    padding: 0;
-    justify-content: center;
-  }
-} */
+.card__button_active {
+  background-image: url(../images/Union.svg);
+}
+.card__trash {
+  position: absolute;
+  width: 18px;
+  height: 19px;
+  background-image: url(../images/Group.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  top: 18px;
+  right: 15px;
+}
+.card__trash:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
 
 @media screen and (max-width: 580px) {
   .card__list {
-    /* grid-template-columns: repeat(auto-fit, 282px); */
     max-width: 282px;
-    /* justify-content: center; */
   }
 }

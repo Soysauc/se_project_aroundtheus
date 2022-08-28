@@ -13,7 +13,7 @@ const profileTitleInput = profileEditForm.querySelector(
 );
 
 const cardListEl = document.querySelector(".card__list");
-console.log(cardListEl);
+
 const profileDescriptionInput = profileEditForm.querySelector(
   ".popup__input_type_description"
 );
@@ -72,83 +72,30 @@ const initialCards = [
   },
 ];
 
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".card__item");
+const cardTemplate =
+  document.querySelector("#card-template").content.firstElementChild;
+
 initialCards.forEach(function (cardData) {
-  // clone template
   const cardEl = cardTemplate.cloneNode(true);
-  // find .card__image
   const imageEl = cardEl.querySelector(".card__image");
-  // find card title
   const cardTitle = cardEl.querySelector(".card__text");
-  // replace image sre
+  const cardButton = cardEl.querySelector(".card__button");
   imageEl.src = cardData.link;
-  // replace image alt
   imageEl.alt = cardData.name;
-  // replace title
   cardTitle.textContent = cardData.name;
-  // append to list
   cardListEl.appendChild(cardEl);
+  cardButton.addEventListener("click", () => {
+    cardButton.classList.toggle("card__button_active");
+  });
+  const cardTrash = cardEl.querySelector(".card__trash");
 });
 
 const cardsList = document.querySelector(".card__list");
 
-// function generateCard(card) {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   cardElement.querySelector(".card__text").textContent = card.name;
-//   const imageEl = cardElement.querySelector(".card__image");
-//   imageEl.style.backgroundImage = `url(${card.link})`;
-
-//   imageEl.addEventListener("click", function () {
-//     previewImgCloseup.src = card.link;
-//     toggleModalWindow(preViewImgModalWindow);
-//   });
-
-//   return cardElement;
-// }
-
-// function renderCard(card, container) {
-//   container.append(card);
-// }
-//---------------------------------------------------------
-// templates
-//---------------------------------------------------------
-
-// editForm.addEventListener("submit", formSubmitHandler);
-// profileEditButton.addEventListener("click", () =>
-//   toggleModalWindow(editModalWindow)
-// );
-// profileAddButton.addEventListener("click", () =>
-//   toggleModalWindow(addModalWindow)
-// );
-// editModalCloseButton.addEventListener("click", () =>
-//   toggleModalWindow(editModalWindow)
-// );
-// addModalCloseButton.addEventListener("click", () =>
-//   toggleModalWindow(addModalWindow)
-// );
-// ImgCloseupModalCloseButton.addEventListener("click", () =>
-//   toggleModalWindow(preViewImgModalWindow)
-//);
 function renderCard(card, container) {
   container.append(card);
 }
-// initialCards.forEach(function (card) {
-//   const newCard = generateCard(card);
-//   renderCard(newCard, cardList);
-// });
 
-// initialCards.forEach(function (card) {
-//   const newCard = generateCard(card);
-//   renderCard(newCard, cardList);
-// });
-
-// method for adding the child in the list beggining is .prepend from Sergey
-/*cardsarray.forEach(item => {
-  const template = document.query...('.template');
-  const clone = template.clone();
-  clone.query...(img).src = item.link
-  prepend
-
-});*/
+//------------------------
+//sprint 5
+//------------------------

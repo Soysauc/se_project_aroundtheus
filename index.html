@@ -32,9 +32,9 @@
           </div>
           <button class="profile__add-button" type="button"></button>
         </section>
-        <section class="card">
-          <ul class="card__list">
-            <!--<li class="card__item">
+
+        <ul class="card__list">
+          <!--<li class="card__item">
               <img
                 src="./images/yosemite-valley.png"
                 class="card__image"
@@ -45,8 +45,7 @@
                 <button type="button" class="card__button"></button>
               </div>
             </li>-->
-          </ul>
-        </section>
+        </ul>
       </main>
       <footer class="footer page__section">
         <p class="footer__copyright">© 2022 Around The U.S.</p>
@@ -73,11 +72,49 @@
           </form>
         </div>
       </div>
+      <!-- New popup place here -->
+      <div class="popup">
+        <div class="popup__content">
+          <button class="popup__close" type="button"></button>
+          <h3 class="popup__title">New place</h3>
+          <form class="popup__form" id="add-profile-form">
+            <input
+              class="popup__input popup__input_type_name"
+              name="title"
+              placeholder="Title"
+              type="text"
+            />
+            <input
+              class="popup__input popup__input_type_description"
+              name="image-link"
+              placeholder="Image link"
+              type="text"
+            />
+            <button class="popup__button">Create</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup" id="image_preview">
+        <div
+          class="popup__content popup__content-image-preview"
+          id="image_preview-content"
+        >
+          <button
+            class="popup__close-button popup__close-preview"
+            id="image_preview-close"
+            type="button"
+          ></button>
+          <img class="popup__image" alt="#" src="#" />
+          <h3 class="popup__image-title"></h3>
+        </div>
+      </div>
     </div>
 
     <template id="card-template">
-      <li class="card card__item">
+      <li class="card">
         <img class="card__image" src="" alt="" />
+        <button class="card__trash" type="button"></button>
         <div class="card__content-container">
           <h2 class="card__text"></h2>
           <button class="card__button" type="button"></button>
