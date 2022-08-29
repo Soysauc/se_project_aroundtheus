@@ -12,6 +12,7 @@
 }
 .popup_is-opened {
   display: flex;
+  
 }
 .popup__content {
   position: relative;
@@ -89,7 +90,7 @@
   cursor: pointer;
 }
 
-/* Sprint 5 */
+
 .popup__image {
   max-width: 75vw;
   max-height: 75vh;

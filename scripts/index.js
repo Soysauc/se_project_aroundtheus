@@ -1,6 +1,3 @@
-//---------------------------------------------------------
-//as per cards thus follows
-//---------------------------------------------------------
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -27,11 +24,9 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg ",
   },
 ];
-
 //---------------------------------------------------------
 //Popup content
 //---------------------------------------------------------
-
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileEditPopup = document.querySelector(".popup");
 const profileEditCloseButton = document.querySelector(".popup__close");
