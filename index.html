@@ -53,7 +53,11 @@
 
       <div class="popup" id="edit-popup">
         <div class="popup__content">
-          <button class="popup__close" type="button"></button>
+          <button
+            class="popup__close"
+            id="edit_close-button"
+            type="button"
+          ></button>
           <h3 class="popup__title">Edit profile</h3>
           <form class="popup__form" id="edit-profile-form">
             <input
@@ -87,12 +91,16 @@
               name="title"
               placeholder="Title"
               type="text"
+              id="title-input"
+              required
             />
             <input
               class="popup__input popup__input_type_description"
               name="image-link"
               placeholder="Image link"
               type="text"
+              id="image-input"
+              required
             />
             <button class="popup__button" id="add_submit">Create</button>
           </form>

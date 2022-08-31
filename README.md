@@ -2,9 +2,6 @@
 
 ### Link to project on github:
 
-https://github.com/Soysauc/se_project_coffeeshop.git
-
-####Link to live site on GitHub:
 https://soysauc.github.io/se_project_aroundtheus/
 **Technologies**
 
@@ -18,4 +15,5 @@ Incorporated adding and removing card blocks with a functional 'trashcan' button
 
 **Figma**
 
-- [Link to the original project on Figma] https://www.figma.com/file/m79HxYeZpOXRw0Tz2eZGOV/Sprint-5%3A-Around-The-U.S.-%7C-desktop-%2B-mobile?node-id=0%3A1
+- [Link to the original project on Figma]
+  https://www.figma.com/file/m79HxYeZpOXRw0Tz2eZGOV/Sprint-5%3A-Around-The-U.S.-%7C-desktop-%2B-mobile?node-id=0%3A1

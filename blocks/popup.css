@@ -12,7 +12,6 @@
 }
 .popup_is-opened {
   display: flex;
-  
 }
 .popup__content {
   position: relative;
@@ -89,7 +88,6 @@
   opacity: 0.8;
   cursor: pointer;
 }
-
 
 .popup__image {
   max-width: 75vw;
