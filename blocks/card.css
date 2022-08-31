@@ -22,6 +22,9 @@
   width: 282px;
   height: 282px;
 }
+.card__image:hover {
+  cursor: pointer;
+}
 .card__content-container {
   padding: 25px 20px;
   font-family: "Inter", Arial, sans-serif;

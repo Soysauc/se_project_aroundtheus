@@ -9,9 +9,18 @@
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
 .popup_is-opened {
   display: flex;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+  transition: visibility 0s, opacity 0.5s linear;
+  transition-delay: 0s;
 }
 .popup__content {
   position: relative;
