@@ -24,6 +24,7 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg ",
   },
 ];
+const imagePreview = document.querySelector("#image_preview");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileEditPopup = document.querySelector(".popup");
 const profileEditCloseButton = document.querySelector("#edit_close-button");
@@ -39,6 +40,9 @@ const profileDescriptionInput = profileEditForm.querySelector(
   ".popup__input_type_description"
 );
 const previewCloseButton = document.querySelector("#image_preview-close");
+previewCloseButton.addEventListener("click", function () {
+  closePopup(imagePreview);
+});
 
 function closePopup(popup) {
   popup.classList.remove("popup_is-opened");
@@ -70,13 +74,13 @@ profileEditForm.addEventListener("submit", (event) => {
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
-initialCards.forEach((cardData) => {
+initialCards.reverse().forEach((cardData) => {
   const card = createCard(cardData);
   renderCard(card, cardListEl);
 });
 
 function renderCard(card, container) {
-  container.append(card);
+  container.prepend(card);
 }
 
 const addSaveButton = document.querySelector("#add_submit");
@@ -111,16 +115,15 @@ addCardForm.addEventListener("submit", function (event) {
 
 function createCard(cardData) {
   const cardEl = cardTemplate.cloneNode(true);
-  const cardButton = cardEl.querySelector(".card__button");
-  cardButton.addEventListener("click", function () {
-    cardButton.classList.toggle("card__button_active");
+  const likeButton = cardEl.querySelector(".card__button");
+  likeButton.addEventListener("click", function () {
+    likeButton.classList.toggle("card__button_active");
   });
   const cardTrash = cardEl.querySelector(".card__trash");
   cardTrash.addEventListener("click", function () {
     cardEl.remove();
   });
 
-  const imagePreview = document.querySelector("#image_preview");
   const imageEl = cardEl.querySelector(".card__image");
 
   imageEl.addEventListener("click", function () {
@@ -130,10 +133,6 @@ function createCard(cardData) {
     popupImage.src = cardData.link;
     popupImage.alt = cardData.name;
     openPopup(imagePreview);
-  });
-
-  previewCloseButton.addEventListener("click", function () {
-    closePopup(imagePreview);
   });
 
   const titleEl = cardEl.querySelector(".card__text");
