@@ -34,7 +34,7 @@ const profileDescriptionEl = document.querySelector(".profile__description");
 const profileTitleInput = profileEditForm.querySelector(
   ".popup__input_type_name"
 );
-const cardListEl = document.querySelector(".card__list");
+const cardListEl = document.querySelector(".card-list");
 const profileDescriptionInput = profileEditForm.querySelector(
   ".popup__input_type_description"
 );
@@ -74,7 +74,6 @@ initialCards.forEach((cardData) => {
   const card = createCard(cardData);
   renderCard(card, cardListEl);
 });
-const cardsList = document.querySelector(".card__list");
 
 function renderCard(card, container) {
   container.append(card);

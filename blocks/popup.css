@@ -5,20 +5,20 @@
   left: 0;
   bottom: 0;
   right: 0;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
   visibility: hidden;
-  pointer-events: none;
+
   opacity: 0;
   transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
 .popup_is-opened {
-  display: flex;
+  /* display: flex; */
   visibility: visible;
   opacity: 1;
-  pointer-events: all;
+
   transition: visibility 0s, opacity 0.5s linear;
   transition-delay: 0s;
 }
@@ -49,6 +49,11 @@
 .popup__close:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+.popup__close_preview {
+  /* position: relative; */
+  top: -47px;
+  right: -47px;
 }
 
 .popup__title {
@@ -119,12 +124,8 @@
   position: relative;
 }
 
-.popup__close_preview {
-  position: absolute;
-}
-
 @media screen and (max-width: 600px) {
-  .popup__close {
+  */ .popup__close {
     right: 0;
     width: 26px;
     height: 26px;
