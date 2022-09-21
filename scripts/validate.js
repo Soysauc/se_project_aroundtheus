@@ -10,39 +10,44 @@ function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   errorMessagesEl.textContent = "";
   errorMessagesEl.classList.remove(errorClass);
 }
-function checkInuputValidity(formEl, inputEl, options) {
+function checkInputValidity(formEl, inputEl, options) {
   if (!inputEl.validity.valid) {
     return showInputError(formEl, inputEl, options);
   }
   hideInputError(formEl, inputEl, options);
 }
-function hasInvalidInuput(inputList) {
+function hasInvalidInput(inputList) {
   return !inputList.every((inputEl) => inputEl.validity.valid);
 }
 
 //disableButton
+function disableButton(submitButton, inactiveButtonClass) {
+  submitButton.classList.add(inactiveButtonClass);
+  submitButton.disabled = true;
+}
 
-//enableButton
-//with function below
-function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
-  if (hasInvalidInuput(inputEls)) {
-    submitButton.classList.add(inactiveButtonClass);
-    submitButton.disabled = true;
-    return;
-  }
-
+function enableButton(submitButton, inactiveButtonClass) {
   submitButton.classList.remove(inactiveButtonClass);
   submitButton.disabled = false;
 }
 
+function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
+  if (hasInvalidInput(inputEls)) {
+    return disableButton(submitButton, inactiveButtonClass);
+  }
+  return enableButton(submitButton, inactiveButtonClass);
+}
+
 //yeet
 function setEventListeners(formEl, options) {
-  const { inputSelector } = options;
+  const { inputSelector, inactiveButtonClass } = options;
   const inputEls = [...formEl.querySelectorAll(inputSelector)];
   const submitButton = formEl.querySelector(".popup__button");
+  // disable submit button by default
+  disableButton(submitButton, inactiveButtonClass);
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", (e) => {
-      checkInuputValidity(formEl, inputEl, options);
+      checkInputValidity(formEl, inputEl, options);
       toggleButtonState(inputEls, submitButton, options);
     });
   });

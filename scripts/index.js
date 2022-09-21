@@ -46,12 +46,12 @@ previewCloseButton.addEventListener("click", function () {
 
 function closePopup(popup) {
   popup.classList.remove("popup_is-opened");
-  document.removeEventListener("keyup", whenEscPress);
+  document.removeEventListener("keyup", handleEscPress);
 }
 
 function openPopup(popup) {
   popup.classList.add("popup_is-opened");
-  document.addEventListener("keyup", whenEscPress);
+  document.addEventListener("keyup", handleEscPress);
 }
 
 //Add the event listener above
@@ -149,43 +149,24 @@ function createCard(cardData) {
   return cardEl;
 }
 
-function whenEscPress(e) {
+function handleEscPress(e) {
   e.preventDefault();
 
-  // const EscKey = 27;
   if (e.key === "Escape") {
-    if (profileEditPopup.classList.contains("popup_is-opened")) {
-      closePopup(profileEditPopup);
-    }
-    if (addCardPopup.classList.contains("popup_is-opened")) {
-      closePopup(addCardPopup);
-    }
-    if (imagePreview.classList.contains("popup_is-opened")) {
-      closePopup(imagePreview);
-    }
+    const openedPopup = document.querySelector(".popup_is-opened");
+    closePopup(openedPopup);
   }
 }
-profileEditPopup.addEventListener("mousedown", (evt) => {
-  if (
-    evt.target.classList.contains("popup") ||
-    evt.target.classList.contains("popup_is-opened")
-  ) {
-    closePopup(profileEditPopup);
-  }
-});
-addCardPopup.addEventListener("mousedown", (evt) => {
-  if (
-    evt.target.classList.contains("popup") ||
-    evt.target.classList.contains("popup_is-opened")
-  ) {
-    closePopup(addCardPopup);
-  }
-});
-imagePreview.addEventListener("mousedown", (evt) => {
+
+function closeModalOnRemoteClick(evt) {
   if (
     evt.target.classList.contains("popup") ||
     evt.target.classList.contains("popup_is-opened")
   ) {
     closePopup(imagePreview);
   }
-});
+}
+
+profileEditPopup.addEventListener("mousedown", closeModalOnRemoteClick);
+addCardPopup.addEventListener("mousedown", closeModalOnRemoteClick);
+imagePreview.addEventListener("mousedown", closeModalOnRemoteClick);
