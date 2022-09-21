@@ -85,11 +85,11 @@
   color: #ff0000;
   font-size: 12px;
   line-height: 15px;
-  /* position: absolute; */
+  position: absolute;
   /* top: calc(100% + 5px); */
-  left: 0;
-  /* opacity: 0;
-  transition: opacity 0.3s; */
+  /* left: 0; */
+  /* /* opacity: 0; */
+  /* transition: opacity 0.3s; */
 }
 .popup__input:invalid {
   border-bottom: 1px solid red;
@@ -111,7 +111,7 @@
   padding: 16px 0;
   margin-top: 48px;
 }
-.popup__button_enabled {
+.popup__button_active {
   border: none;
   color: #fff;
   background-color: #000;
