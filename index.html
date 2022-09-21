@@ -33,19 +33,7 @@
           <button class="profile__add-button" type="button"></button>
         </section>
 
-        <ul class="card-list">
-          <!--<li class="card__item">
-              <img
-                src="./images/yosemite-valley.png"
-                class="card__image"
-                alt="yosemite valley"
-              />
-              <div class="card__content-container">
-                <h2 class="card__text">Yosemite Valley</h2>
-                <button type="button" class="card__button"></button>
-              </div>
-            </li>-->
-        </ul>
+        <ul class="card-list"></ul>
       </main>
       <footer class="footer page__section">
         <p class="footer__copyright">© 2022 Around The U.S.</p>
@@ -65,16 +53,40 @@
               name="title"
               placeholder="Name"
               type="text"
+              minlength="2"
+              maxlength="40"
+              id="owner-name"
               required
             />
+            <span id="owner-name-error" class="popup__input-error"></span>
+            <!-- <span class="popup__input-error"
+              >Please lengthen this text to 2 characters or more. You are
+              currently using 1 character.</span
+            > -->
             <input
               class="popup__input popup__input_type_description"
               name="description"
-              placeholder="Description"
+              placeholder="About"
               type="text"
+              minlength="2"
+              maxlength="200"
+              id="owner-description"
               required
             />
-            <button class="popup__button">Save</button>
+            <span
+              id="owner-description-error"
+              class="popup__input-error"
+            ></span>
+            <!-- <span class="popup__input-error"
+              >Please lengthen this text to 2 characters or more. You are
+              currently using 1 character.</span
+            > -->
+            <button
+              class="popup__button popup__button_disabled popup__button_enabled"
+              disabled
+            >
+              Save
+            </button>
           </form>
         </div>
       </div>
@@ -94,17 +106,27 @@
               placeholder="Title"
               type="text"
               id="title-input"
+              minlength="1"
+              maxlength="30"
               required
             />
+            <span id="title-input-error" class="popup__input-error"></span>
             <input
               class="popup__input popup__input_type_description"
               name="image-link"
-              placeholder="Image link"
-              type="text"
+              placeholder="Image URL"
+              type="url"
               id="image-input"
               required
             />
-            <button class="popup__button" id="add_submit">Create</button>
+            <span id="image-input-error" class="popup__input-error"></span>
+            <button
+              class="popup__button popup__button_disabled popup__button_enabled"
+              id="add_submit"
+              disabled
+            >
+              Create
+            </button>
           </form>
         </div>
       </div>
@@ -137,5 +159,6 @@
     </template>
 
     <script defer src="./scripts/index.js"></script>
+    <script defer src="./scripts/validate.js"></script>
   </body>
 </html>
