@@ -47,11 +47,17 @@ function setEventListeners(formEl, options) {
   disableButton(submitButton, inactiveButtonClass);
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", (e) => {
+      // validateInputs(formEl, submitButton, inputEl, inputEls, options);
       checkInputValidity(formEl, inputEl, options);
       toggleButtonState(inputEls, submitButton, options);
     });
   });
+  // validateInputs(formEl, submitButton, inputEl, inputEls, options);
 }
+
+// function validateInputs(formEl, submitButton, inputEl, inputEls, options) {
+// }
+
 function enableValidation(options) {
   const formEls = [...document.querySelectorAll(options.formSelector)];
   formEls.forEach((formEl) => {

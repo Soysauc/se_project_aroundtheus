@@ -98,6 +98,11 @@ const addCardPopup = document.querySelector("#add-popup");
 const linkInput = document.querySelector("#image-input");
 const titleInput = document.querySelector("#title-input");
 
+function disableAddSubmitButton() {
+  const submitButton = addCardPopup.querySelector(config.submitButtonSelector);
+  disableButton(submitButton, config.inactiveButtonClass);
+}
+
 addCardButton.addEventListener("click", function () {
   openPopup(addCardPopup);
 });
@@ -116,6 +121,7 @@ addCardForm.addEventListener("submit", function (event) {
   );
   closePopup(addCardPopup);
   addCardForm.reset();
+  disableAddSubmitButton();
 });
 
 function createCard(cardData) {
@@ -160,12 +166,12 @@ function handleEscPress(e) {
   }
 }
 
-function closeModalOnRemoteClick(evt) {
+function closePopupOnRemoteClick(evt) {
   if (evt.target.classList.contains("popup")) {
     closePopup(evt.target);
   }
 }
-
-profileEditPopup.addEventListener("mousedown", closeModalOnRemoteClick);
-addCardPopup.addEventListener("mousedown", closeModalOnRemoteClick);
-imagePreview.addEventListener("mousedown", closeModalOnRemoteClick);
+// profileEditPopup.addEventListener("mousedown", closeModalOnRemoteClick);
+// addCardPopup.addEventListener("mousedown", closeModalOnRemoteClick);
+// imagePreview.addEventListener("mousedown", closeModalOnRemoteClick);
+// create the event listener for the close button AFTER the popup is opened. When you close it - you remoive event listener
