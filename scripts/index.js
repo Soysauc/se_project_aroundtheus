@@ -47,11 +47,13 @@ previewCloseButton.addEventListener("click", function () {
 function closePopup(popup) {
   popup.classList.remove("popup_is-opened");
   document.removeEventListener("keyup", handleEscPress);
+  popup.removeEventListener("mousedown", closePopupOnRemoteClick);
 }
 
 function openPopup(popup) {
   popup.classList.add("popup_is-opened");
   document.addEventListener("keyup", handleEscPress);
+  popup.addEventListener("mousedown", closePopupOnRemoteClick);
 }
 
 //Add the event listener above
@@ -159,11 +161,8 @@ function handleEscPress(e) {
 }
 
 function closeModalOnRemoteClick(evt) {
-  if (
-    evt.target.classList.contains("popup") ||
-    evt.target.classList.contains("popup_is-opened")
-  ) {
-    closePopup(imagePreview);
+  if (evt.target.classList.contains("popup")) {
+    closePopup(evt.target);
   }
 }
 
