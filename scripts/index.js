@@ -61,6 +61,7 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitleEl.textContent;
   profileDescriptionInput.value = profileDescriptionEl.textContent;
   openPopup(profileEditPopup);
+  validateInputs(editForm, config);
 });
 
 profileEditCloseButton.addEventListener("click", () => {

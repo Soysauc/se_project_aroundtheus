@@ -55,8 +55,17 @@ function setEventListeners(formEl, options) {
   // validateInputs(formEl, submitButton, inputEl, inputEls, options);
 }
 
-// function validateInputs(formEl, submitButton, inputEl, inputEls, options) {
-// }
+function validateInputs(formEl, options) {
+  const { inputSelector } = options;
+  const inputEls = [...formEl.querySelectorAll(inputSelector)];
+  const submitButton = formEl.querySelector(".popup__button");
+
+  inputEls.forEach((inputEl) => {
+    // validateInputs(formEl, submitButton, inputEl, inputEls, options);
+    checkInputValidity(formEl, inputEl, options);
+    toggleButtonState(inputEls, submitButton, options);
+  });
+}
 
 function enableValidation(options) {
   const formEls = [...document.querySelectorAll(options.formSelector)];
