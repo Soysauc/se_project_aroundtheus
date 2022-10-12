@@ -1,3 +1,5 @@
+import FormValidator from "./FormValidator.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -76,6 +78,18 @@ profileEditForm.addEventListener("submit", (event) => {
   profileDescriptionEl.textContent = descriptionValue;
   closePopup(profileEditPopup);
 });
+//------------------------------------------
+// validation
+//------------------------------------------
+
+const validationSettings = {
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
+const editFormEl = editForm.querySelector("popup__form"); //39:47
 
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
@@ -176,3 +190,6 @@ function closePopupOnRemoteClick(evt) {
 // addCardPopup.addEventListener("mousedown", closeModalOnRemoteClick);
 // imagePreview.addEventListener("mousedown", closeModalOnRemoteClick);
 // create the event listener for the close button AFTER the popup is opened. When you close it - you remoive event listener
+
+// const editFormValidator = new FormValidator(settings, editForm);
+// const addFormValidator = new FormValidator(settings, addForm);

@@ -1,4 +1,4 @@
-# Project 5: Around The U.S.
+# Project 7: Around The U.S.
 
 ### Link to project on github:
 
@@ -12,6 +12,9 @@ Incorporated JavaScript technologies and removed card elements to be replaced by
 
 08/26/2022
 Incorporated adding and removing card blocks with a functional 'trashcan' button and the addition of responsive image pop-ups.
+
+10/12/2022
+Refactored code using Object Oriented Programming and JavaScript Classes. The functionality did not change from the previous sprint but the code became much more concise and cleaner. We kept our scripts separate in order to increase readability.
 
 **Figma**
 
