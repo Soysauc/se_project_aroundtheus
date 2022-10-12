@@ -1,22 +1,22 @@
-// export function openModalWindow(modal) {
-//   modal.classList.add("popup_is-opened");
-//   document.addEventListener("keydown", closeModalByEscape);
-// }
+export function openPopup(popup) {
+  popup.classList.add("popup_is-opened");
+  document.addEventListener("keyup", handleEscPress);
+}
 
-// export function closeModalWindow(modal) {
-//   modal.classList.remove("popup_is-opened");
-//   document.removeEventListener("keydown", closeModalByEscape);
-// }
+export function closePopup(popup) {
+  popup.classList.remove("popup_is-opened");
+  document.removeEventListener("keyup", handleEscPress);
+}
 
-// export function closeModalByEscape(event) {
-//   if (event.key === "Escape") {
-//     const openedModal = document.querySelector(".popup_is-opened");
-//     closeModalWindow(openedModal);
-//   }
-// }
+export function handleEscPress(e) {
+  if (e.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_is-opened");
+    closePopup(openedPopup);
+  }
+}
 
-// document.addEventListener("mousedown", function (event) {
-//   if (event.target.classList.contains("popup")) {
-//     closeModalWindow(event.target);
-//   }
-// });
+document.addEventListener("mousedown", function (e) {
+  if (e.target.classList.contains("popup")) {
+    closePopup(e.target);
+  }
+});

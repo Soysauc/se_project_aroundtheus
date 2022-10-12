@@ -1,4 +1,6 @@
 import FormValidator from "./FormValidator.js";
+import Card from "./Card.js";
+import { openPopup, closePopup, handleEscPress } from "./utils.js";
 
 const initialCards = [
   {
@@ -46,17 +48,17 @@ previewCloseButton.addEventListener("click", function () {
   closePopup(imagePreview);
 });
 
-function closePopup(popup) {
-  popup.classList.remove("popup_is-opened");
-  document.removeEventListener("keyup", handleEscPress);
-  popup.removeEventListener("mousedown", closePopupOnRemoteClick);
-}
+// function closePopup(popup) {
+//   popup.classList.remove("popup_is-opened");
+//   document.removeEventListener("keyup", handleEscPress);
+//   popup.removeEventListener("mousedown", closePopupOnRemoteClick);
+// }
 
-function openPopup(popup) {
-  popup.classList.add("popup_is-opened");
-  document.addEventListener("keyup", handleEscPress);
-  popup.addEventListener("mousedown", closePopupOnRemoteClick);
-}
+// function openPopup(popup) {
+//   popup.classList.add("popup_is-opened");
+//   document.addEventListener("keyup", handleEscPress);
+//   popup.addEventListener("mousedown", closePopupOnRemoteClick);
+// }
 
 //Add the event listener above
 profileEditButton.addEventListener("click", () => {
@@ -89,8 +91,29 @@ const validationSettings = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
 };
-const editFormEl = editForm.querySelector("popup__form"); //39:47
+const editFormEl = document.querySelector("#edit-profile-form"); //39:47
+const addFormEl = document.querySelector("#add-profile-form");
+const editFormValidator = new FormValidator(validationSettings, editFormEl);
+editFormValidator.enableValidation();
 
+const addFormValidator = new FormValidator(validationSettings, addFormEl);
+addFormValidator.enableValidation("popup_form");
+
+// cardAddForm.addEventListener("submit", handleCreateCardFormSubmit);
+
+function handleCreateCardFormSubmit(e) {
+  e.preventDefault();
+  const titlePlaceValue = e.target.titlePlace.value;
+  const imageLinkValue = e.target.imageLink.value;
+  const cardData = { name: titlePlaceValue, link: imageLinkValue };
+  renderCard(cardData, cardListEl);
+  closeModalWindow(addModalWindow);
+
+  cardAddForm.reset();
+  addFormValidator.disableSubmitButton();
+}
+// -----------------------------------------------
+//------------------------------------------------
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
@@ -171,25 +194,30 @@ function createCard(cardData) {
 
   return cardEl;
 }
+const settings = {
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
 
-function handleEscPress(e) {
-  e.preventDefault();
+// function handleEscPress(e) {
+//   e.preventDefault();
 
-  if (e.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_is-opened");
-    closePopup(openedPopup);
-  }
-}
+//   if (e.key === "Escape") {
+//     const openedPopup = document.querySelector(".popup_is-opened");
+//     closePopup(openedPopup);
+//   }
+// }
 
-function closePopupOnRemoteClick(evt) {
-  if (evt.target.classList.contains("popup")) {
-    closePopup(evt.target);
-  }
-}
+// function closePopupOnRemoteClick(evt) {
+//   if (evt.target.classList.contains("popup")) {
+//     closePopup(evt.target);
+//   }
+// }
+
 // profileEditPopup.addEventListener("mousedown", closeModalOnRemoteClick);
 // addCardPopup.addEventListener("mousedown", closeModalOnRemoteClick);
 // imagePreview.addEventListener("mousedown", closeModalOnRemoteClick);
 // create the event listener for the close button AFTER the popup is opened. When you close it - you remoive event listener
-
-// const editFormValidator = new FormValidator(settings, editForm);
-// const addFormValidator = new FormValidator(settings, addForm);
