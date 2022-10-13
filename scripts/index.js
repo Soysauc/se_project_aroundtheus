@@ -48,24 +48,10 @@ previewCloseButton.addEventListener("click", function () {
   closePopup(imagePreview);
 });
 
-// function closePopup(popup) {
-//   popup.classList.remove("popup_is-opened");
-//   document.removeEventListener("keyup", handleEscPress);
-//   popup.removeEventListener("mousedown", closePopupOnRemoteClick);
-// }
-
-// function openPopup(popup) {
-//   popup.classList.add("popup_is-opened");
-//   document.addEventListener("keyup", handleEscPress);
-//   popup.addEventListener("mousedown", closePopupOnRemoteClick);
-// }
-
-//Add the event listener above
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitleEl.textContent;
   profileDescriptionInput.value = profileDescriptionEl.textContent;
   openPopup(profileEditPopup);
-  // validateInputs(editForm, config);
 });
 
 profileEditCloseButton.addEventListener("click", () => {
@@ -80,9 +66,6 @@ profileEditForm.addEventListener("submit", (event) => {
   profileDescriptionEl.textContent = descriptionValue;
   closePopup(profileEditPopup);
 });
-//------------------------------------------
-// validation
-//------------------------------------------
 
 const validationSettings = {
   inputSelector: ".popup__input",
@@ -99,21 +82,6 @@ editFormValidator.enableValidation();
 const addFormValidator = new FormValidator(validationSettings, addFormEl);
 addFormValidator.enableValidation();
 
-// cardAddForm.addEventListener("submit", handleCreateCardFormSubmit);
-
-// function handleCreateCardFormSubmit(e) {
-//   e.preventDefault();
-//   const titlePlaceValue = e.target.titlePlace.value;
-//   const imageLinkValue = e.target.imageLink.value;
-//   const cardData = { name: titlePlaceValue, link: imageLinkValue };
-//   renderCard(cardData, cardListEl);
-//   closeModalWindow(addModalWindow);
-
-//   cardAddForm.reset();
-//   addFormValidator.disableButton();
-// }
-// -----------------------------------------------
-//------------------------------------------------
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
@@ -135,11 +103,6 @@ const addCardForm = document.querySelector("#add-profile-form");
 const addCardPopup = document.querySelector("#add-popup");
 const linkInput = document.querySelector("#image-input");
 const titleInput = document.querySelector("#title-input");
-
-// function disableAddSubmitButton() {
-//   const submitButton = addCardPopup.querySelector(config.submitButtonSelector);
-//   disableButton(submitButton, config.inactiveButtonClass);
-// }
 
 addCardButton.addEventListener("click", function () {
   openPopup(addCardPopup);
@@ -173,23 +136,3 @@ function createCard(cardData) {
   });
   return card;
 }
-
-// function handleEscPress(e) {
-//   e.preventDefault();
-
-//   if (e.key === "Escape") {
-//     const openedPopup = document.querySelector(".popup_is-opened");
-//     closePopup(openedPopup);
-//   }
-// }
-
-// function closePopupOnRemoteClick(evt) {
-//   if (evt.target.classList.contains("popup")) {
-//     closePopup(evt.target);
-//   }
-// }
-
-// profileEditPopup.addEventListener("mousedown", closeModalOnRemoteClick);
-// addCardPopup.addEventListener("mousedown", closeModalOnRemoteClick);
-// imagePreview.addEventListener("mousedown", closeModalOnRemoteClick);
-// create the event listener for the close button AFTER the popup is opened. When you close it - you remoive event listener

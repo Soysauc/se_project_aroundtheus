@@ -26,7 +26,7 @@ class Card {
   _handleLikeButton() {
     this._element
       .querySelector(".card__button")
-      .classList.toggle("card__button_state_active");
+      .classList.toggle("card__button_active");
   }
 
   _handleDeleteCard() {
