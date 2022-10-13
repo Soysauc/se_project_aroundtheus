@@ -13,7 +13,7 @@ class Card {
       .addEventListener("click", () => this._handleLikeButton());
 
     this._element
-      .querySelector(".card__button-delete")
+      .querySelector(".card__trash")
       .addEventListener("click", () => this._handleDeleteCard());
 
     this._element

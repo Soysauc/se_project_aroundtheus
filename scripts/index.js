@@ -65,7 +65,7 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitleEl.textContent;
   profileDescriptionInput.value = profileDescriptionEl.textContent;
   openPopup(profileEditPopup);
-  validateInputs(editForm, config);
+  // validateInputs(editForm, config);
 });
 
 profileEditCloseButton.addEventListener("click", () => {
@@ -97,21 +97,21 @@ const editFormValidator = new FormValidator(validationSettings, editFormEl);
 editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(validationSettings, addFormEl);
-addFormValidator.enableValidation("popup_form");
+addFormValidator.enableValidation();
 
 // cardAddForm.addEventListener("submit", handleCreateCardFormSubmit);
 
-function handleCreateCardFormSubmit(e) {
-  e.preventDefault();
-  const titlePlaceValue = e.target.titlePlace.value;
-  const imageLinkValue = e.target.imageLink.value;
-  const cardData = { name: titlePlaceValue, link: imageLinkValue };
-  renderCard(cardData, cardListEl);
-  closeModalWindow(addModalWindow);
+// function handleCreateCardFormSubmit(e) {
+//   e.preventDefault();
+//   const titlePlaceValue = e.target.titlePlace.value;
+//   const imageLinkValue = e.target.imageLink.value;
+//   const cardData = { name: titlePlaceValue, link: imageLinkValue };
+//   renderCard(cardData, cardListEl);
+//   closeModalWindow(addModalWindow);
 
-  cardAddForm.reset();
-  addFormValidator.disableSubmitButton();
-}
+//   cardAddForm.reset();
+//   addFormValidator.disableButton();
+// }
 // -----------------------------------------------
 //------------------------------------------------
 const cardTemplate =
@@ -123,7 +123,7 @@ initialCards.reverse().forEach((cardData) => {
 });
 
 function renderCard(card, container) {
-  container.prepend(card);
+  container.prepend(card.getView());
 }
 
 const addSaveButton = document.querySelector("#add_submit");
@@ -136,10 +136,10 @@ const addCardPopup = document.querySelector("#add-popup");
 const linkInput = document.querySelector("#image-input");
 const titleInput = document.querySelector("#title-input");
 
-function disableAddSubmitButton() {
-  const submitButton = addCardPopup.querySelector(config.submitButtonSelector);
-  disableButton(submitButton, config.inactiveButtonClass);
-}
+// function disableAddSubmitButton() {
+//   const submitButton = addCardPopup.querySelector(config.submitButtonSelector);
+//   disableButton(submitButton, config.inactiveButtonClass);
+// }
 
 addCardButton.addEventListener("click", function () {
   openPopup(addCardPopup);
@@ -159,48 +159,20 @@ addCardForm.addEventListener("submit", function (event) {
   );
   closePopup(addCardPopup);
   addCardForm.reset();
-  disableAddSubmitButton();
+  addFormValidator.disableButton();
 });
 
 function createCard(cardData) {
-  const cardEl = cardTemplate.cloneNode(true);
-  const likeButton = cardEl.querySelector(".card__button");
-  likeButton.addEventListener("click", function () {
-    likeButton.classList.toggle("card__button_active");
-  });
-  const cardTrash = cardEl.querySelector(".card__trash");
-  cardTrash.addEventListener("click", function () {
-    cardEl.remove();
-  });
-
-  const imageEl = cardEl.querySelector(".card__image");
-
-  imageEl.addEventListener("click", function () {
+  const card = new Card(cardData, "#card-template", (link, name) => {
     const popupImage = imagePreview.querySelector(".popup__image");
     const popupImageTitle = imagePreview.querySelector(".popup__image-title");
-    popupImageTitle.textContent = cardData.name;
-    popupImage.src = cardData.link;
-    popupImage.alt = cardData.name;
+    popupImageTitle.textContent = name;
+    popupImage.src = link;
+    popupImage.alt = name;
     openPopup(imagePreview);
   });
-
-  const titleEl = cardEl.querySelector(".card__text");
-
-  imageEl.src = cardData.link;
-
-  imageEl.alt = cardData.name;
-
-  titleEl.textContent = cardData.name;
-
-  return cardEl;
+  return card;
 }
-const settings = {
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-};
 
 // function handleEscPress(e) {
 //   e.preventDefault();
