@@ -1,4 +1,4 @@
-import "../pages/index.css";
+import "../src/pages/index.css";
 import FormValidator from "../scripts/FormValidator.js";
 import Card from "../scripts/Card.js";
 import { openPopup, closePopup, handleEscPress } from "../scripts/utils.js";
