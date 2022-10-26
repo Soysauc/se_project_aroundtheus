@@ -1,18 +1,19 @@
 import "../pages/index.css";
-import FormValidator from "../scripts/FormValidator.js";
-import Card from "../scripts/Card.js";
-import { openPopup, closePopup, handleEscPress } from "../scripts/utils.js";
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
+import { openPopup, closePopup, handleEscPress } from "../utils/utils.js";
 
 import {
   validationSettings,
   selectors,
   initialCards,
-} from "../scripts/Constants.js";
+} from "../utils/constants.js";
 
-import UserInfo from "../scripts/UserInfo.js";
-import Section from "../scripts/Section.js";
-import PopupWithImage from "../scripts/PopupWithImage.js";
-import PopupWithForm from "../scripts/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import Popup from "../components/Popup";
 
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileEditCloseButton = document.querySelector("#edit_close-button");
@@ -131,7 +132,7 @@ addCardForm.addEventListener("submit", function (event) {
     cardListEl
   );
   closePopup(addCardPopup);
-  addCardForm.reset();
+
   addFormValidator.disableButton();
 });
 //new Card
