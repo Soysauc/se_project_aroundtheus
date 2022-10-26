@@ -1,7 +1,7 @@
 import "../pages/index.css";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
-import { openPopup, closePopup, handleEscPress } from "../utils/utils.js";
+import { closePopup, handleEscPress } from "../utils/utils.js";
 
 import {
   validationSettings,
@@ -40,25 +40,26 @@ previewCloseButton.addEventListener("click", function () {
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitleEl.textContent;
   profileDescriptionInput.value = profileDescriptionEl.textContent;
-  openPopup(profileEditPopup);
+  editFormPopup.openPopup();
+  // openPopup(profileEditPopup);
 });
 
-profileEditCloseButton.addEventListener("click", () => {
-  closePopup(profileEditPopup);
-});
+// profileEditCloseButton.addEventListener('click', () => {
+//   editFormPopup.closePopup();
+// });
 
-profileEditForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const titleValue = profileTitleInput.value;
-  const descriptionValue = profileDescriptionInput.value;
-  profileTitleEl.textContent = titleValue;
-  profileDescriptionEl.textContent = descriptionValue;
-  closePopup(profileEditPopup);
-});
+// profileEditForm.addEventListener('submit', (event) => {
+//   event.preventDefault();
+//   const titleValue = profileTitleInput.value;
+//   const descriptionValue = profileDescriptionInput.value;
+//   profileTitleEl.textContent = titleValue;
+//   profileDescriptionEl.textContent = descriptionValue;
+//   closePopup(profileEditPopup);
+// });
 
 //------
 // Class Instances
-const userInfo = new UserInfo(selectors.userName, selectors.userDescription);
+const userInfo = new UserInfo(".profile__title", ".profile__description");
 
 const cardPreviewPopup = new PopupWithImage(selectors.imagePreview);
 
@@ -83,12 +84,15 @@ addFormValidator.enableValidation();
 const editFormPopup = new PopupWithForm({
   popupSelector: selectors.editPopup,
   handleFormSubmit: (data) => {
+    debugger;
     userInfo.setUserInfo(data);
 
     editFormPopup.closePopup();
     editFormValidator.disableButton();
   },
 });
+editFormPopup.setEventsListeners();
+
 const addFormPopup = new PopupWithForm({
   popupSelector: selectors.addPopup,
   handleFormSubmit: (item) => {
@@ -116,24 +120,25 @@ const linkInput = document.querySelector("#image-input");
 const titleInput = document.querySelector("#title-input");
 
 addCardButton.addEventListener("click", function () {
-  openPopup(addCardPopup);
+  addFormPopup.openPopup();
 });
+
 addCloseButton.addEventListener("click", function () {
   closePopup(addCardPopup);
 });
 
-addCardForm.addEventListener("submit", function (event) {
-  event.preventDefault();
-  renderCard(
-    createCard({
-      name: titleInput.value,
-      link: linkInput.value,
-    }),
-    cardListEl
-  );
+// addCardForm.addEventListener('submit', function (event) {
+//   event.preventDefault();
+//   renderCard(
+//     createCard({
+//       name: titleInput.value,
+//       link: linkInput.value,
+//     }),
+//     cardListEl,
+//   );
 
-  addFormValidator.disableButton();
-});
+//   addFormValidator.disableButton();
+// });
 //new Card
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", (link, name) => {
