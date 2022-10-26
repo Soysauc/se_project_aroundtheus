@@ -18,6 +18,8 @@ export default class PopupWithForm extends Popup {
   handleSubmit = (e) => {
     e.preventDefault();
     this._handleFormSubmit(this._getInputValues());
+    // meaghan's recommendations
+    this.closePopup();
   };
 
   setEventsListeners() {

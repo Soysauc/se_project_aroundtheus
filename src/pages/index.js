@@ -131,7 +131,6 @@ addCardForm.addEventListener("submit", function (event) {
     }),
     cardListEl
   );
-  closePopup(addCardPopup);
 
   addFormValidator.disableButton();
 });

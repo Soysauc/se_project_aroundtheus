@@ -22,8 +22,8 @@ class FormValidator {
   }
 
   // What can I do to these parameters? 26:45
-  _toggleButtonState(inputEls) {
-    if (this._hasInvalidInput(inputEls)) {
+  _toggleButtonState() {
+    if (this._hasInvalidInput(this._inputEls)) {
       return this.disableButton();
     }
     return this.enableButton();
