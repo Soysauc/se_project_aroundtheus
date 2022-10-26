@@ -1,10 +1,10 @@
 class FormValidator {
-  constructor(settings, formElement) {
-    this._inputSelector = settings.inputSelector;
-    this._submitButtonSelector = settings.submitButtonSelector;
-    this._inactiveButtonClass = settings.inactiveButtonClass;
-    this._inputErrorClass = settings.inputErrorClass;
-    this._errorClass = settings.errorClass;
+  constructor(validationSettings, formElement) {
+    this._inputSelector = validationSettings.inputSelector;
+    this._submitButtonSelector = validationSettings.submitButtonSelector;
+    this._inactiveButtonClass = validationSettings.inactiveButtonClass;
+    this._inputErrorClass = validationSettings.inputErrorClass;
+    this._errorClass = validationSettings.errorClass;
     this._form = formElement;
   }
 

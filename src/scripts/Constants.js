@@ -33,12 +33,14 @@ export const validationSettings = {
   errorClass: "popup__error_visible",
 };
 
-export const selectorEls = {
+export const selectors = {
   cardListEl: ".card-list",
   cardTemplate: "#card-template",
-  //
   imagePreview: "#image_preview",
-  //
+  //userName:
+  //userDescription:
+  editPopup: "#edit-popup",
+  addPopup: "#add-popup",
   profileTitleEl: ".profile__title",
   profileDescriptionEl: ".profile__description",
 };
