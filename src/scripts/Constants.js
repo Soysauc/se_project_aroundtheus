@@ -37,8 +37,10 @@ export const selectors = {
   cardListEl: ".card-list",
   cardTemplate: "#card-template",
   imagePreview: "#image_preview",
-  //userName:
-  //userDescription:
+
+  userName: ".popup__input_type_name",
+  userDescription: ".popup__input_type_description",
+
   editPopup: "#edit-popup",
   addPopup: "#add-popup",
   profileTitleEl: ".profile__title",

@@ -57,7 +57,7 @@ profileEditForm.addEventListener("submit", (event) => {
 
 //------
 // Class Instances
-//const userInfo = new UserInfo(selectors.userName, selectors.userAboutMe);
+const userInfo = new UserInfo(selectors.userName, selectors.userDescription);
 
 const cardPreviewPopup = new PopupWithImage(selectors.imagePreview);
 
@@ -137,12 +137,10 @@ addCardForm.addEventListener("submit", function (event) {
 //new Card
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", (link, name) => {
-    const popupImage = imagePreview.querySelector(".popup__image");
-    const popupImageTitle = imagePreview.querySelector(".popup__image-title");
-    popupImageTitle.textContent = name;
-    popupImage.src = link;
-    popupImage.alt = name;
-    openPopup(imagePreview);
+    cardPreviewPopup.open({
+      link,
+      title: name,
+    });
   });
   return card;
 }
