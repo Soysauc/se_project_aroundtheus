@@ -1,7 +1,6 @@
 import "../pages/index.css";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
-import { closePopup, handleEscPress } from "../utils/utils.js";
 
 import {
   validationSettings,
@@ -34,7 +33,7 @@ const cardListEl = document.querySelector(selectors.cardListEl);
 const addCardPopup = document.querySelector(selectors.addPopup);
 const previewCloseButton = document.querySelector("#image_preview-close");
 previewCloseButton.addEventListener("click", function () {
-  closePopup(imagePreview);
+  cardPreviewPopup.closePopup();
 });
 
 profileEditButton.addEventListener("click", () => {
@@ -44,21 +43,6 @@ profileEditButton.addEventListener("click", () => {
   // openPopup(profileEditPopup);
 });
 
-// profileEditCloseButton.addEventListener('click', () => {
-//   editFormPopup.closePopup();
-// });
-
-// profileEditForm.addEventListener('submit', (event) => {
-//   event.preventDefault();
-//   const titleValue = profileTitleInput.value;
-//   const descriptionValue = profileDescriptionInput.value;
-//   profileTitleEl.textContent = titleValue;
-//   profileDescriptionEl.textContent = descriptionValue;
-//   closePopup(profileEditPopup);
-// });
-
-//------
-// Class Instances
 const userInfo = new UserInfo(".profile__title", ".profile__description");
 
 const cardPreviewPopup = new PopupWithImage(selectors.imagePreview);
@@ -84,7 +68,6 @@ addFormValidator.enableValidation();
 const editFormPopup = new PopupWithForm({
   popupSelector: selectors.editPopup,
   handleFormSubmit: (data) => {
-    debugger;
     userInfo.setUserInfo(data);
 
     editFormPopup.closePopup();
@@ -96,7 +79,7 @@ editFormPopup.setEventsListeners();
 const addFormPopup = new PopupWithForm({
   popupSelector: selectors.addPopup,
   handleFormSubmit: (item) => {
-    renderCard(item);
+    cardSection.addItem(createCard(item).getView());
     addFormPopup.closePopup();
     addFormValidator.disableButton();
   },
@@ -114,32 +97,15 @@ function renderCard(card, container) {
 
 const addCloseButton = document.querySelector("#add_close-button");
 const addCardButton = document.querySelector(".profile__add-button");
-const addCardForm = document.querySelector("#add-profile-form");
-
-const linkInput = document.querySelector("#image-input");
-const titleInput = document.querySelector("#title-input");
 
 addCardButton.addEventListener("click", function () {
   addFormPopup.openPopup();
 });
 
 addCloseButton.addEventListener("click", function () {
-  closePopup(addCardPopup);
+  addFormPopup.closePopup();
 });
 
-// addCardForm.addEventListener('submit', function (event) {
-//   event.preventDefault();
-//   renderCard(
-//     createCard({
-//       name: titleInput.value,
-//       link: linkInput.value,
-//     }),
-//     cardListEl,
-//   );
-
-//   addFormValidator.disableButton();
-// });
-//new Card
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", (link, name) => {
     cardPreviewPopup.open({
