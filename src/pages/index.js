@@ -38,9 +38,10 @@ previewCloseButton.addEventListener("click", function () {
 
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitleEl.textContent;
+
   profileDescriptionInput.value = profileDescriptionEl.textContent;
+
   editFormPopup.openPopup();
-  // openPopup(profileEditPopup);
 });
 
 const userInfo = new UserInfo(".profile__title", ".profile__description");
