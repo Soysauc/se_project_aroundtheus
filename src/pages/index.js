@@ -37,10 +37,10 @@ previewCloseButton.addEventListener("click", function () {
 });
 
 profileEditButton.addEventListener("click", () => {
-  profileTitleInput.value = profileTitleEl.textContent;
+  const { name, description } = userInfo.getUserInfo();
 
-  profileDescriptionInput.value = profileDescriptionEl.textContent;
-
+  profileTitleInput.value = name;
+  profileDescriptionInput.value = description;
   editFormPopup.openPopup();
 });
 
