@@ -54,6 +54,16 @@
   top: -47px;
   right: -47px;
 }
+.popup__confirm {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgb(0 0 0 / 15%);
+  box-sizing: border-box;
+  padding: 34px 36px;
+  position: relative;
+  height: 181px;
+  width: 430px;
+}
 
 .popup__title {
   font-family: "Inter", Arial, sans-serif;

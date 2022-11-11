@@ -74,3 +74,15 @@
   cursor: pointer;
   opacity: 0.5;
 }
+
+/* sprint 9 */
+
+.card__counter {
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
+  font-size: 13px;
+  line-height: 16px;
+  color: black;
+}

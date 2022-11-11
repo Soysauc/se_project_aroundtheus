@@ -45,4 +45,5 @@ export const selectors = {
   addPopup: "#add-popup",
   profileTitleEl: ".profile__title",
   profileDescriptionEl: ".profile__description",
+  profileImageEdit: ".profile__image-edit",
 };

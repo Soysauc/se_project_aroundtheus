@@ -80,6 +80,11 @@
   object-fit: cover;
   background-position: center;
 }
+.profile__image:hover {
+  opacity: 0.6;
+  cursor: pointer;
+  transition: 0.4s;
+}
 
 .profile__description {
   font-size: 18px;
@@ -89,6 +94,26 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.profile__image-edit {
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  background-image: url(../images/GiantPencil.svg);
+  background-size: 20%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: none;
+  border-radius: 50%;
+  opacity: 0;
+  transition: ease-in-out 0.3s;
+}
+
+.profile__image-edit:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
