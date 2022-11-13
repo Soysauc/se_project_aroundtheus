@@ -32,4 +32,18 @@ export default class Api {
         console.log(err); // log the error to the console
       });
   }
+
+  loadCard({ name, link }) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        link,
+      }),
+    });
+  }
 }

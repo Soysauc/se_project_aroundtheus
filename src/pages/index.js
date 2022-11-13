@@ -62,7 +62,7 @@ const cardPreviewPopup = new PopupWithImage(selectors.imagePreview);
 //---please dont mess this up ln 95
 
 api.getInitialCards().then((cardData) => {
-  const cardSection = new Section(
+  cardSection = new Section(
     { cards: cardData, items: initialCards, renderer: renderCard },
     selectors.cardListEl
   );
@@ -101,10 +101,13 @@ editFormPopup.setEventsListeners();
 
 const addFormPopup = new PopupWithForm({
   popupSelector: selectors.addPopup,
-  handleFormSubmit: (item) => {
-    cardSection.addItem(createCard(item).getView());
-    addFormPopup.closePopup();
-    addFormValidator.disableButton();
+  handleFormSubmit: (data) => {
+    cardSection.addItem(createCard(data).getView());
+    api.loadCard(data).then((data) => {
+      renderCard(data);
+      addFormPopup.closePopup();
+      addFormValidator.disableButton();
+    });
   },
 });
 //----------------

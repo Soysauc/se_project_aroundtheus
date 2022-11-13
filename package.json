@@ -1,7 +1,7 @@
 {
   "name": "practicum",
   "version": "0.0.1",
-  "description": "Educational platform",
+  "description": "Photo web app",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
@@ -10,7 +10,7 @@
     "deploy": "gh-pages -d dist"
   },
   "keywords": [],
-  "author": "Elise Bouer",
+  "author": "Jeremy Rivera",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "7.18.9",
