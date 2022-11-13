@@ -5,7 +5,7 @@ import Card from "../components/Card.js";
 import {
   validationSettings,
   selectors,
-  initialCards,
+  // initialCards,
 } from "../utils/constants.js";
 
 import UserInfo from "../components/UserInfo.js";
@@ -13,6 +13,7 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import Popup from "../components/Popup";
+import Api from "../components/Api";
 
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileEditCloseButton = document.querySelector("#edit_close-button");
@@ -44,17 +45,36 @@ profileEditButton.addEventListener("click", () => {
   editFormPopup.openPopup();
 });
 
+//-------------------------------------------------Sprint 9
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  headers: {
+    authToken: "80636754-d324-4e63-a28c-a3c0dc3cb7b9",
+    "Content-Type": "application/json",
+  },
+});
+
+//-------------------------------------------------Sprint 9
+
 const userInfo = new UserInfo(".profile__title", ".profile__description");
 
 const cardPreviewPopup = new PopupWithImage(selectors.imagePreview);
+//---please dont mess this up ln 95
 
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: renderCard,
-  },
-  selectors.cardListEl
-);
+api.getInitialCards().then((cardData) => {
+  const cardSection = new Section(
+    { cards: cardData, items: initialCards, renderer: renderCard },
+    selectors.cardListEl
+  );
+});
+
+api.getUserInfo().then((userData) => {
+  userInfo.setUserInfo({
+    title: userData.name,
+    description: userData.about,
+  });
+});
+//-------sprint 9
 //formValidation
 const addFormEl = document.querySelector("#add-profile-form");
 const editFormValidator = new FormValidator(
@@ -66,6 +86,7 @@ editFormValidator.enableValidation();
 const addFormValidator = new FormValidator(validationSettings, addFormEl);
 addFormValidator.enableValidation();
 //----------------------
+
 const editFormPopup = new PopupWithForm({
   popupSelector: selectors.editPopup,
   handleFormSubmit: (data) => {
@@ -75,6 +96,7 @@ const editFormPopup = new PopupWithForm({
     editFormValidator.disableButton();
   },
 });
+
 editFormPopup.setEventsListeners();
 
 const addFormPopup = new PopupWithForm({
