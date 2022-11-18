@@ -5,7 +5,7 @@ import Card from "../components/Card.js";
 import {
   validationSettings,
   selectors,
-  initialCards, //remove this
+  // initialCards, //remove this
 } from "../utils/constants.js";
 
 import UserInfo from "../components/UserInfo.js";
@@ -44,6 +44,63 @@ profileEditButton.addEventListener("click", () => {
   profileDescriptionInput.value = description;
   editFormPopup.openPopup();
 });
+//old version
+// function createCard(cardData) {
+//   const card = new Card(cardData, "#card-template", (link, name) => {
+//     cardPreviewPopup.open({
+//       link,
+//       title: name,
+//     });
+//   });
+//   return card;
+// }
+function createCard(cardData) {
+  const card = new Card(
+    {
+      cardData,
+      handleImageClick: (imgData) => {
+        cardPreviewPopup.open(imgData);
+      },
+      handleDeleteClick: () => {
+        confirmationPopup.openPopup(() => {
+          confirmationPopup.renderLoading(true);
+          api
+            .deleteCard(data._id)
+            .then(() => {
+              card.removeCard();
+              confirmationPopup.closePopup();
+            })
+            .catch((err) => console.log(`An error occured: ${err}`))
+            .finally(() => confirmationPopup.renderLoading(false));
+        });
+      },
+      handleLikeClick: () => {
+        if (card.isLiked()) {
+          api
+            .removeLike(card._cardId)
+            .then((res) => {
+              card.setLikes(res.likes);
+            })
+            .catch((err) => {
+              console.log(`An error occured: ${err}`);
+            });
+        } else {
+          api
+            .addLike(card._cardId)
+            .then((res) => {
+              card.setLikes(res.likes);
+            })
+            .catch((err) => {
+              console.log(`An error occured: ${err}`);
+            });
+        }
+      },
+      userId: userInfo.getId(),
+    },
+    selectors.cardTemplate
+  );
+  return card.getView();
+}
 
 //-------------------------------------------------Sprint 9
 const api = new Api({
@@ -57,10 +114,8 @@ const api = new Api({
 //-------------------------------------------------Sprint 9
 
 const userInfo = new UserInfo(".profile__title", ".profile__description");
-
 const cardPreviewPopup = new PopupWithImage(selectors.imagePreview);
 //---please dont mess this up ln 95
-
 Promise.all(api.getInitialCards()).then((cardData) => {
   const cardSection = new Section(
     { cards: cardData, items: initialCards, renderer: renderCard },
@@ -82,6 +137,7 @@ const editFormValidator = new FormValidator(
   profileEditForm
 );
 editFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(validationSettings, addFormEl);
 addFormValidator.enableValidation();
@@ -90,14 +146,36 @@ addFormValidator.enableValidation();
 const editFormPopup = new PopupWithForm({
   popupSelector: selectors.editPopup,
   handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
-
-    editFormPopup.closePopup();
-    editFormValidator.disableButton();
+    editFormPopup.renderLoading(true);
+    api.updateProfile(data);
+    then((data) => {
+      userInfo.setUserInfo(data);
+      editFormPopup.closePopup();
+    })
+      .catch((err) => {
+        console.log(`An error occured ${err}`);
+      })
+      .finally(() => editFormPopup.renderLoading(false));
+    // userInfo.setUserInfo(data);
+    // editFormValidator.disableButton();
   },
 });
 
 editFormPopup.setEventsListeners();
+cardPreviewPopup.setEventsListeners();
+confirmationPopup.setEventsListeners();
+
+editProfileButton.addEventListener("click", () => {
+  const { name, about } = userInfo.getUserInfo();
+  inputName.value = name;
+  inputAboutMe.value = about;
+  editFormValidator.disableButton();
+  editFormPopup.openPopup();
+});
+avatarEditButton.addEventListener("click", () => {
+  avatarFormValidator.disableButton();
+  avatarFormPopup.openPopup();
+});
 
 const addFormPopup = new PopupWithForm({
   popupSelector: selectors.addPopup,
@@ -113,16 +191,40 @@ const addFormPopup = new PopupWithForm({
     // .finally(() => addFormPopup.renderLoading(false));
   },
 });
+
+const confirmationPopup = new PopupWithConfirmation(selectors.deletePopup);
+const avatarFormValidator = new FormValidator(
+  validationConfig,
+  selectors.avatarForm
+);
+const avatarFormPopup = new PopupWithForm({
+  popupSelector: selectors.avatarPopup,
+  handleFormSubmit: (data) => {
+    avatarFormPopup.renderLoading(true);
+    api
+      .updateAvatar(data)
+      .then((data) => {
+        userInfo.setUserInfo(data);
+        avatarFormPopup.closePopup();
+      })
+      .catch((err) => console.log(`An error occured ${err}`))
+      .finally(() => avatarFormPopup.renderLoading(false));
+  },
+});
 //----------------
 
-initialCards.reverse().forEach((cardData) => {
-  const card = createCard(cardData);
-  renderCard(card, cardListEl);
-});
-
-function renderCard(card, container) {
-  container.prepend(card.getView());
-}
+// initialCards.reverse().forEach((cardData) => {
+//   const card = createCard(cardData);
+//   renderCard(card, cardListEl);
+// });
+//the following was old
+// function renderCard(card, container) {
+//   container.prepend(card.getView());
+// }
+const renderCard = (data) => {
+  const card = createCard(data);
+  cardSection.addItem(card);
+};
 
 const addCloseButton = document.querySelector("#add_close-button");
 const addCardButton = document.querySelector(".profile__add-button");
@@ -134,13 +236,3 @@ addCardButton.addEventListener("click", function () {
 addCloseButton.addEventListener("click", function () {
   addFormPopup.closePopup();
 });
-
-function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", (link, name) => {
-    cardPreviewPopup.open({
-      link,
-      title: name,
-    });
-  });
-  return card;
-}
