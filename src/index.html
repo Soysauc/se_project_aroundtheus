@@ -165,6 +165,26 @@
       </div>
     </div>
 
+    <div class="popup" id="avatar-popup">
+      <div class="popup__content">
+        <button class="popup__close" title="Close popup"></button>
+        <h2 class="popup__title">Change profile picture</h2>
+        <form class="popup__form_avatar popup__form" novalidate>
+          <input
+            type="url"
+            name="link"
+            placeholder="Image link"
+            class="popup__avatar-link popup__input"
+            id="avatar-link"
+            required
+          />
+          <span class="popup__error" id="avatar-link-error"></span>
+          <button type="submit" class="popup__button">Save</button>
+        </form>
+      </div>
+    </div>
+    <!-- <! --sprint 9-->
+
     <template id="card-template">
       <li class="card">
         <img class="card__image" src="#" alt="#" />

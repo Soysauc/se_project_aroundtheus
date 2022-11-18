@@ -4,7 +4,7 @@ export default class Api {
     this._authToken = authToken;
   }
   //create a response() for the then and catch
-  //getCardList()?
+
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: {
@@ -58,6 +58,8 @@ export default class Api {
         name,
         link,
       }),
+    }).then((res) => {
+      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     });
   }
   //--

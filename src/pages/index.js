@@ -5,7 +5,7 @@ import Card from "../components/Card.js";
 import {
   validationSettings,
   selectors,
-  // initialCards,
+  initialCards, //remove this
 } from "../utils/constants.js";
 
 import UserInfo from "../components/UserInfo.js";
@@ -49,7 +49,7 @@ profileEditButton.addEventListener("click", () => {
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
   headers: {
-    authToken: "80636754-d324-4e63-a28c-a3c0dc3cb7b9",
+    authToken: "08a19e41-d9fe-403d-98ff-e77a4df3ef16",
     "Content-Type": "application/json",
   },
 });
@@ -61,14 +61,14 @@ const userInfo = new UserInfo(".profile__title", ".profile__description");
 const cardPreviewPopup = new PopupWithImage(selectors.imagePreview);
 //---please dont mess this up ln 95
 
-api.getInitialCards().then((cardData) => {
-  cardSection = new Section(
+Promise.all(api.getInitialCards()).then((cardData) => {
+  const cardSection = new Section(
     { cards: cardData, items: initialCards, renderer: renderCard },
     selectors.cardListEl
   );
 });
 
-api.getUserInfo().then((userData) => {
+Promise.all(api.getUserInfo()).then((userData) => {
   userInfo.setUserInfo({
     title: userData.name,
     description: userData.about,
@@ -108,6 +108,9 @@ const addFormPopup = new PopupWithForm({
       addFormPopup.closePopup();
       addFormValidator.disableButton();
     });
+    //do i need to re-add if i have it in my Api.js folder?
+    //.catch((err) => console.log(`An error occured ${err}`))
+    // .finally(() => addFormPopup.renderLoading(false));
   },
 });
 //----------------
