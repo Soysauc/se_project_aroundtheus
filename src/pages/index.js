@@ -51,8 +51,12 @@ profileEditButton.addEventListener("click", () => {
   profileDescriptionInput.value = description;
   editFormPopup.openPopup();
 });
+
+// -----------------------
 let userId = null;
 let cardSection = null;
+// -----------------------
+
 function createCard(cardData) {
   const card = new Card(
     {
@@ -156,8 +160,8 @@ confirmationPopup.setEventsListeners();
 
 profileEditButton.addEventListener("click", () => {
   const { name, about } = userInfo.getUserInfo();
-  inputName.value = name;
-  inputAboutMe.value = about;
+  profileTitleInput.value = name;
+  profileDescriptionInput.value = about;
   editFormValidator.disableButton();
   editFormPopup.openPopup();
 });

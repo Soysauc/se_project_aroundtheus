@@ -11,25 +11,23 @@ class FormValidator {
   _showInputError(inputEl) {
     const errorMessagesEl = this._form.querySelector(`#${inputEl.id}-error`);
     inputEl.classList.add(this._inputErrorClass);
-    errorMessagesEl.textContent = inputEl.validationMessage; //formerly only inputEl.validationMessage
+    errorMessagesEl.textContent = inputEl.validationMessage;
     errorMessagesEl.classList.add(this._errorClass);
   }
   _hideInputError(inputEl) {
     const errorMessagesEl = this._form.querySelector(`#${inputEl.id}-error`);
     inputEl.classList.remove(this._inputErrorClass);
-    errorMessagesEl.textContent = ""; //formerly only ""
+    errorMessagesEl.textContent = "";
     errorMessagesEl.classList.remove(this._errorClass);
   }
 
-  // What can I do to these parameters? 26:45
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputEls)) {
       return this.disableButton();
     }
     return this.enableButton();
   }
-  // for ToggleButtonState's Buttons
-  // This also may be different
+
   _hasInvalidInput(inputList) {
     return !inputList.every((inputEl) => inputEl.validity.valid);
   }
@@ -65,7 +63,7 @@ class FormValidator {
     this._form.addEventListener("submit", (e) => {
       e.preventDefault();
     });
-    this._setEventListeners(); //formerly formEl and options as arguments
+    this._setEventListeners();
   }
 }
 

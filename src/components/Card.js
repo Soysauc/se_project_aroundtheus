@@ -31,7 +31,7 @@ export default class Card {
       );
     this._likeButton.addEventListener("click", this._handleLikeClick);
   }
-  //render likes
+
   _handleLikeButton() {
     this._totalLikes.textContent = this._likes.length;
 
@@ -46,7 +46,7 @@ export default class Card {
   isLiked() {
     return this._likes.some((item) => item._id === this._userId);
   }
-  //remove card
+
   _handleDeleteCard() {
     this._element.remove();
     this._element = null;
@@ -76,9 +76,7 @@ export default class Card {
     this._likeButton = this._element.querySelector(".card__button");
     this._deleteButton = this._element.querySelector(".card__trash");
     this._totalLikes = this._element.querySelector(".card__counter");
-
     // this._handleLikeButton();
-
     if (this._ownerId === this._userId) {
       this._addDeleteIcon();
     }
