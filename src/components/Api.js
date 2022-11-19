@@ -9,10 +9,11 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards`, {
       headers: {
         authorization: this._authToken,
+        "Content-Type": "application/json",
       },
     })
       .then((res) => {
-        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+        return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
       })
       .catch((err) => {
         console.log(err); // log the error to the console
@@ -23,10 +24,11 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         authorization: this._authToken,
+        "Content-Type": "application/json",
       },
     })
       .then((res) => {
-        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+        return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
       })
       .catch((err) => {
         console.log(err); // log the error to the console
@@ -36,7 +38,10 @@ export default class Api {
   updateProfile(data) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._authToken,
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         name: data.name,
         about: data.about,
@@ -66,7 +71,10 @@ export default class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: this._authToken,
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": "application/json",
+      },
     }).then((res) => {
       res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     });
@@ -75,7 +83,10 @@ export default class Api {
   updateAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._authToken,
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         avatar: data.link,
       }),
@@ -86,7 +97,10 @@ export default class Api {
 
   getLikes(cardId) {
     return fetch(`${this._baseUrl}/cards/likes${cardId}`, {
-      headers: this._authToken,
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": "application/json",
+      },
     }).then((res) => {
       res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     });
@@ -94,7 +108,10 @@ export default class Api {
 
   addLike(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      headers: this._authToken,
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": "application/json",
+      },
       method: "PUT",
     }).then((res) => {
       res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
@@ -103,7 +120,10 @@ export default class Api {
 
   removeLike(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      headers: this._authToken,
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": "application/json",
+      },
       method: "DELETE",
     }).then((res) => {
       res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);

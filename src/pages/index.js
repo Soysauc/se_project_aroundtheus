@@ -2,39 +2,46 @@ import "../pages/index.css";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 
-import {
-  validationSettings,
-  selectors,
-  // initialCards, //remove this
-} from "../utils/constants.js";
+import { validationSettings, selectors } from "../utils/constants.js";
 
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import Popup from "../components/Popup";
+import PopupWithConfirmation from "../components/PopupWithConfirmation";
 import Api from "../components/Api";
 
 const profileEditButton = document.querySelector(".profile__edit-button");
-const profileEditCloseButton = document.querySelector("#edit_close-button");
 const profileEditForm = document.querySelector("#edit-profile-form");
 const profileTitleInput = profileEditForm.querySelector(
   ".popup__input_type_name"
 );
-const imagePreview = document.querySelector(selectors.imagePreview);
 const profileDescriptionInput = profileEditForm.querySelector(
   ".popup__input_type_description"
 );
-const profileTitleEl = document.querySelector(selectors.profileTitleEl);
-const profileDescriptionEl = document.querySelector(
-  selectors.profileDescriptionEl
-);
-const profileEditPopup = document.querySelector(selectors.editPopup);
-const cardListEl = document.querySelector(selectors.cardListEl);
-const addCardPopup = document.querySelector(selectors.addPopup);
 const previewCloseButton = document.querySelector("#image_preview-close");
 previewCloseButton.addEventListener("click", function () {
   cardPreviewPopup.closePopup();
+});
+
+const confirmationPopup = new PopupWithConfirmation(selectors.deletePopup);
+const avatarFormValidator = new FormValidator(
+  validationSettings,
+  selectors.avatarFormEl
+);
+const avatarFormPopup = new PopupWithForm({
+  popupSelector: selectors.avatarPopup,
+  handleFormSubmit: (data) => {
+    avatarFormPopup.renderLoading(true);
+    api
+      .updateAvatar(data)
+      .then((data) => {
+        userInfo.setUserInfo(data);
+        avatarFormPopup.closePopup();
+      })
+      .catch((err) => console.log(`An error occured ${err}`))
+      .finally(() => avatarFormPopup.renderLoading(false));
+  },
 });
 
 profileEditButton.addEventListener("click", () => {
@@ -44,20 +51,12 @@ profileEditButton.addEventListener("click", () => {
   profileDescriptionInput.value = description;
   editFormPopup.openPopup();
 });
-//old version
-// function createCard(cardData) {
-//   const card = new Card(cardData, "#card-template", (link, name) => {
-//     cardPreviewPopup.open({
-//       link,
-//       title: name,
-//     });
-//   });
-//   return card;
-// }
+let userId = null;
+let cardSection = null;
 function createCard(cardData) {
   const card = new Card(
     {
-      cardData,
+      data: { ...cardData, currentUserId: userId },
       handleImageClick: (imgData) => {
         cardPreviewPopup.open(imgData);
       },
@@ -95,42 +94,34 @@ function createCard(cardData) {
             });
         }
       },
-      userId: userInfo.getId(),
     },
     selectors.cardTemplate
   );
   return card.getView();
 }
 
-//-------------------------------------------------Sprint 9
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
-  headers: {
-    authToken: "08a19e41-d9fe-403d-98ff-e77a4df3ef16",
-    "Content-Type": "application/json",
-  },
+  authToken: "08a19e41-d9fe-403d-98ff-e77a4df3ef16",
 });
-
-//-------------------------------------------------Sprint 9
 
 const userInfo = new UserInfo(".profile__title", ".profile__description");
 const cardPreviewPopup = new PopupWithImage(selectors.imagePreview);
-//---please dont mess this up ln 95
-Promise.all(api.getInitialCards()).then((cardData) => {
-  const cardSection = new Section(
-    { cards: cardData, items: initialCards, renderer: renderCard },
+
+Promise.all([api.getInitialCards(), api.getUserInfo()]).then((data) => {
+  userId = data[1]._id;
+  userInfo.setUserInfo({
+    title: data[1].name,
+    description: data[1].about,
+  });
+
+  cardSection = new Section(
+    { items: data[0], renderer: renderCard },
     selectors.cardListEl
   );
+  cardSection.renderItems();
 });
 
-Promise.all(api.getUserInfo()).then((userData) => {
-  userInfo.setUserInfo({
-    title: userData.name,
-    description: userData.about,
-  });
-});
-//-------sprint 9
-//formValidation
 const addFormEl = document.querySelector("#add-profile-form");
 const editFormValidator = new FormValidator(
   validationSettings,
@@ -156,8 +147,6 @@ const editFormPopup = new PopupWithForm({
         console.log(`An error occured ${err}`);
       })
       .finally(() => editFormPopup.renderLoading(false));
-    // userInfo.setUserInfo(data);
-    // editFormValidator.disableButton();
   },
 });
 
@@ -165,14 +154,14 @@ editFormPopup.setEventsListeners();
 cardPreviewPopup.setEventsListeners();
 confirmationPopup.setEventsListeners();
 
-editProfileButton.addEventListener("click", () => {
+profileEditButton.addEventListener("click", () => {
   const { name, about } = userInfo.getUserInfo();
   inputName.value = name;
   inputAboutMe.value = about;
   editFormValidator.disableButton();
   editFormPopup.openPopup();
 });
-avatarEditButton.addEventListener("click", () => {
+selectors.profileImageEdit.addEventListener("click", () => {
   avatarFormValidator.disableButton();
   avatarFormPopup.openPopup();
 });
@@ -186,41 +175,9 @@ const addFormPopup = new PopupWithForm({
       addFormPopup.closePopup();
       addFormValidator.disableButton();
     });
-    //do i need to re-add if i have it in my Api.js folder?
-    //.catch((err) => console.log(`An error occured ${err}`))
-    // .finally(() => addFormPopup.renderLoading(false));
   },
 });
 
-const confirmationPopup = new PopupWithConfirmation(selectors.deletePopup);
-const avatarFormValidator = new FormValidator(
-  validationConfig,
-  selectors.avatarForm
-);
-const avatarFormPopup = new PopupWithForm({
-  popupSelector: selectors.avatarPopup,
-  handleFormSubmit: (data) => {
-    avatarFormPopup.renderLoading(true);
-    api
-      .updateAvatar(data)
-      .then((data) => {
-        userInfo.setUserInfo(data);
-        avatarFormPopup.closePopup();
-      })
-      .catch((err) => console.log(`An error occured ${err}`))
-      .finally(() => avatarFormPopup.renderLoading(false));
-  },
-});
-//----------------
-
-// initialCards.reverse().forEach((cardData) => {
-//   const card = createCard(cardData);
-//   renderCard(card, cardListEl);
-// });
-//the following was old
-// function renderCard(card, container) {
-//   container.prepend(card.getView());
-// }
 const renderCard = (data) => {
   const card = createCard(data);
   cardSection.addItem(card);

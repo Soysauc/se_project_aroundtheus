@@ -7,7 +7,7 @@ export default class Card {
     this._link = data.link;
     this._cardId = data._id;
     this._likes = data.likes;
-    this._userId = userId;
+    this._userId = data.currentUserId;
     this._ownerId = data.owner._id;
     this._handleImageClick = handleImageClick;
     this._handleDeleteClick = handleDeleteClick;
@@ -76,7 +76,7 @@ export default class Card {
     this._deleteButton = this._element.querySelector(".card__trash");
     this._totalLikes = this._element.querySelector(".card__counter");
 
-    this._renderlikes();
+    // this._renderlikes();
 
     if (this._ownerId === this._userId) {
       this._addDeleteIcon();
