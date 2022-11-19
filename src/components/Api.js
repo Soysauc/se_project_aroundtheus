@@ -43,11 +43,11 @@ export default class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: data.name,
-        about: data.about,
+        name: data.title,
+        about: data.description,
       }),
     }).then((res) => {
-      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     });
   }
 
@@ -64,7 +64,7 @@ export default class Api {
         link,
       }),
     }).then((res) => {
-      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     });
   }
   //--
@@ -76,7 +76,7 @@ export default class Api {
         "Content-Type": "application/json",
       },
     }).then((res) => {
-      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     });
   }
 
@@ -91,7 +91,7 @@ export default class Api {
         avatar: data.link,
       }),
     }).then((res) => {
-      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     });
   }
 
@@ -102,7 +102,7 @@ export default class Api {
         "Content-Type": "application/json",
       },
     }).then((res) => {
-      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     });
   }
 
@@ -114,7 +114,7 @@ export default class Api {
       },
       method: "PUT",
     }).then((res) => {
-      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     });
   }
 
@@ -126,7 +126,7 @@ export default class Api {
       },
       method: "DELETE",
     }).then((res) => {
-      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     });
   }
 }

@@ -36,7 +36,11 @@ const avatarFormPopup = new PopupWithForm({
     api
       .updateAvatar(data)
       .then((data) => {
-        userInfo.setUserInfo(data);
+        userInfo.setUserInfo({
+          title: data.name,
+          description: data.about,
+          avatar: data.avatar,
+        });
         avatarFormPopup.closePopup();
       })
       .catch((err) => console.log(`An error occured ${err}`))
@@ -46,9 +50,9 @@ const avatarFormPopup = new PopupWithForm({
 
 profileEditButton.addEventListener("click", () => {
   const { name, description } = userInfo.getUserInfo();
-
   profileTitleInput.value = name;
   profileDescriptionInput.value = description;
+  editFormValidator.disableButton();
   editFormPopup.openPopup();
 });
 
@@ -109,7 +113,11 @@ const api = new Api({
   authToken: "08a19e41-d9fe-403d-98ff-e77a4df3ef16",
 });
 
-const userInfo = new UserInfo(".profile__title", ".profile__description");
+const userInfo = new UserInfo(
+  ".profile__title",
+  ".profile__description",
+  ".profile__image"
+);
 const cardPreviewPopup = new PopupWithImage(selectors.imagePreview);
 
 Promise.all([api.getInitialCards(), api.getUserInfo()]).then((data) => {
@@ -142,11 +150,12 @@ const editFormPopup = new PopupWithForm({
   popupSelector: selectors.editPopup,
   handleFormSubmit: (data) => {
     editFormPopup.renderLoading(true);
-    api.updateProfile(data);
-    then((data) => {
-      userInfo.setUserInfo(data);
-      editFormPopup.closePopup();
-    })
+    api
+      .updateProfile(data)
+      .then((data) => {
+        userInfo.setUserInfo({ title: data.name, description: data.about });
+        editFormPopup.closePopup();
+      })
       .catch((err) => {
         console.log(`An error occured ${err}`);
       })
@@ -158,13 +167,6 @@ editFormPopup.setEventsListeners();
 cardPreviewPopup.setEventsListeners();
 confirmationPopup.setEventsListeners();
 
-profileEditButton.addEventListener("click", () => {
-  const { name, about } = userInfo.getUserInfo();
-  profileTitleInput.value = name;
-  profileDescriptionInput.value = about;
-  editFormValidator.disableButton();
-  editFormPopup.openPopup();
-});
 selectors.profileImageEdit.addEventListener("click", () => {
   avatarFormValidator.disableButton();
   avatarFormPopup.openPopup();

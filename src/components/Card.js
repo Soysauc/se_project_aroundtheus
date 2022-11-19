@@ -27,7 +27,7 @@ export default class Card {
     this._element
       .querySelector(".card__image")
       .addEventListener("click", () =>
-        this._handleImageClick(this._link, this._name)
+        this._handleImageClick({ link: this._link, title: this._name })
       );
     this._likeButton.addEventListener("click", this._handleLikeClick);
   }
