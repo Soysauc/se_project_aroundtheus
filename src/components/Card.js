@@ -34,6 +34,7 @@ export default class Card {
   //render likes
   _handleLikeButton() {
     this._totalLikes.textContent = this._likes.length;
+
     this._element
       .querySelector(".card__button")
       .classList.toggle("card__button_active");
@@ -76,7 +77,7 @@ export default class Card {
     this._deleteButton = this._element.querySelector(".card__trash");
     this._totalLikes = this._element.querySelector(".card__counter");
 
-    // this._renderlikes();
+    // this._handleLikeButton();
 
     if (this._ownerId === this._userId) {
       this._addDeleteIcon();
