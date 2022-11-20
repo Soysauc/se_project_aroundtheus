@@ -68,11 +68,11 @@ function createCard(cardData) {
       handleImageClick: (imgData) => {
         cardPreviewPopup.open(imgData);
       },
-      handleDeleteClick: () => {
+      handleDeleteClick: (cardId) => {
         confirmationPopup.openPopup(() => {
           confirmationPopup.renderLoading(true);
           api
-            .deleteCard(data._id)
+            .deleteCard(cardId)
             .then(() => {
               card.removeCard();
               confirmationPopup.closePopup();

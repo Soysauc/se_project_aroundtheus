@@ -122,6 +122,14 @@
   opacity: 0.2;
 }
 
+.popup__button_delete {
+  /* margin: 36px; */
+  /* padding: 14px 124px; */
+  width: 358px;
+  margin-top: 0;
+  align-self: center;
+}
+
 .popup__button:hover {
   opacity: 0.8;
   cursor: pointer;
