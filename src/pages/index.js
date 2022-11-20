@@ -175,8 +175,7 @@ selectors.profileImageEdit.addEventListener("click", () => {
 const addFormPopup = new PopupWithForm({
   popupSelector: selectors.addPopup,
   handleFormSubmit: (data) => {
-    cardSection.addItem(createCard(data).getView());
-    api.loadCard(data).then((data) => {
+    api.loadCard({ link: data.link, name: data.title }).then((data) => {
       renderCard(data);
       addFormPopup.closePopup();
       addFormValidator.disableButton();
