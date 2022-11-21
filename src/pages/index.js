@@ -172,6 +172,7 @@ selectors.profileImageEdit.addEventListener("click", () => {
 const addFormPopup = new PopupWithForm({
   popupSelector: selectors.addPopup,
   handleFormSubmit: (data) => {
+    addFormPopup.renderLoading(true);
     api
       .loadCard({ link: data.link, name: data.title })
       .then((data) => {
