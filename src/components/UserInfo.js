@@ -22,4 +22,8 @@ export default class UserInfo {
       this._avatar.src = avatar;
     }
   }
+
+  setAvatar(link) {
+    this._avatar.src = link;
+  }
 }

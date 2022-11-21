@@ -3,7 +3,13 @@ export default class Api {
     this._baseUrl = baseUrl;
     this._authToken = authToken;
   }
-  //create a response() for the then and catch
+
+  _processResponse = (res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  };
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
@@ -11,13 +17,7 @@ export default class Api {
         authorization: this._authToken,
         "Content-Type": "application/json",
       },
-    })
-      .then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((err) => {
-        console.log(err); // log the error to the console
-      });
+    }).then(this._processResponse);
   }
 
   getUserInfo() {
@@ -26,13 +26,7 @@ export default class Api {
         authorization: this._authToken,
         "Content-Type": "application/json",
       },
-    })
-      .then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((err) => {
-        console.log(err); // log the error to the console
-      });
+    }).then(this._processResponse);
   }
   //--
   updateProfile(data) {
@@ -46,9 +40,7 @@ export default class Api {
         name: data.title,
         about: data.description,
       }),
-    }).then((res) => {
-      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   //--
@@ -63,9 +55,7 @@ export default class Api {
         name,
         link,
       }),
-    }).then((res) => {
-      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
   //--
   deleteCard(cardId) {
@@ -75,9 +65,7 @@ export default class Api {
         authorization: this._authToken,
         "Content-Type": "application/json",
       },
-    }).then((res) => {
-      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   updateAvatar(data) {
@@ -90,9 +78,7 @@ export default class Api {
       body: JSON.stringify({
         avatar: data.link,
       }),
-    }).then((res) => {
-      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   getLikes(cardId) {
@@ -101,9 +87,7 @@ export default class Api {
         authorization: this._authToken,
         "Content-Type": "application/json",
       },
-    }).then((res) => {
-      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   addLike(cardId) {
@@ -113,9 +97,7 @@ export default class Api {
         "Content-Type": "application/json",
       },
       method: "PUT",
-    }).then((res) => {
-      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   removeLike(cardId) {
@@ -125,8 +107,6 @@ export default class Api {
         "Content-Type": "application/json",
       },
       method: "DELETE",
-    }).then((res) => {
-      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 }
