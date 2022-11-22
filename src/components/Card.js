@@ -58,21 +58,21 @@ export default class Card {
     return cardElement;
   }
   getView() {
-    const cardEl = this._getTemplate();
-    this._imageElement = cardEl.querySelector(".card__image");
+    this._element = this._getTemplate();
+    this._imageElement = this._element.querySelector(".card__image");
     this._imageElement.src = this._link;
     this._imageElement.alt = this._name;
-    const nameEl = cardEl.querySelector(".card__text");
+    const nameEl = this._element.querySelector(".card__text");
     nameEl.textContent = this._name;
-    this._likeButton = cardEl.querySelector(".card__button");
-    this._deleteButton = cardEl.querySelector(".card__trash");
-    this._totalLikes = cardEl.querySelector(".card__counter");
+    this._likeButton = this._element.querySelector(".card__button");
+    this._deleteButton = this._element.querySelector(".card__trash");
+    this._totalLikes = this._element.querySelector(".card__counter");
     this.setLikes(this._likes);
     if (this._ownerId === this._userId) {
       this._addDeleteIcon();
     }
 
     this._setEventListeners();
-    return cardEl;
+    return this._element;
   }
 }
