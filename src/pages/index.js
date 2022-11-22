@@ -115,21 +115,23 @@ const userInfo = new UserInfo(
 );
 const cardPreviewPopup = new PopupWithImage(selectors.imagePreview);
 
-Promise.all([api.getInitialCards(), api.getUserInfo()]).then(
-  ([cardsResponse, userResponse]) => {
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([cardsResponse, userResponse]) => {
     userId = userResponse._id;
     userInfo.setUserInfo({
       title: userResponse.name,
       description: userResponse.about,
     });
-
+    userInfo.setAvatar(userResponse.avatar);
     cardSection = new Section(
       { items: cardsResponse, renderer: renderCard },
       selectors.cardListEl
     );
     cardSection.renderItems();
-  }
-);
+  })
+  .catch((err) => {
+    console.log(`An error occured ${err}`);
+  });
 
 const addFormEl = document.querySelector("#add-profile-form");
 const editFormValidator = new FormValidator(
@@ -183,7 +185,7 @@ const addFormPopup = new PopupWithForm({
       .catch((err) => {
         console.log(`An error occured ${err}`);
       })
-      .finally(() => editFormPopup.renderLoading(false));
+      .finally(() => addFormPopup.renderLoading(false));
   },
 });
 
